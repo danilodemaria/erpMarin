@@ -73,3 +73,28 @@ create table faturamento_saida(
 	valor decimal(10,2),
 	data timestamp
 );
+
+create table funcionario (
+	id serial primary key,
+	nome varchar(100),
+	cpf varchar(100),
+	rg  varchar(100),
+	carteira varchar(100),
+	nacionalidade  varchar(100),
+	tel1  varchar(100),
+	tel2 varchar(100),
+	titulo varchar(100),
+	rua varchar(100),
+	numeroCasa varchar(100),
+	cidade varchar(100),
+	estado varchar(100),
+	nomeMae varchar(100),
+	nomePai varchar(100),
+	cargo varchar(100),
+	salario decimal(10,2),
+	extra decimal(10,2),
+	valorFolga decimal(10,2),
+	data_nascimento timestamp,
+	data_admissao timestamp
+
+);
