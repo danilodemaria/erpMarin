@@ -14,6 +14,7 @@ import Telas.Cartao.Cartao_Rede;
 import BackEnd.AtualizadorHorario;
 import Fornecedores.CadastrarAgenda;
 import Funcionarios.Cadastra;
+import Funcionarios.Lancamento;
 import Telas.Financeiro.Faturamento_Entrada;
 import Telas.Financeiro.Faturamento_Saida;
 import Telas.Financeiro.Faturamento_Total;
@@ -307,6 +308,11 @@ public class Menu_Principal extends javax.swing.JFrame {
         jMenu4.add(jMenuItem5);
 
         jMenuItem6.setText("Cadastrar Salário");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem6);
 
         jMenuItem7.setText("Relatórios");
@@ -506,6 +512,12 @@ public class Menu_Principal extends javax.swing.JFrame {
         }
         visualiza.setVisible(true);
     }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        Lancamento funcionario = new Lancamento();
+        funcionario.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -427,5 +427,22 @@ public class Database {
 
         return false;
     }
+    
+     public ResultSet buscaFuncionario(String text) {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+
+        stm = "SELECT * from funcionario where id = ? order by nome";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            pst.setInt(1, Integer.valueOf(text));
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+    }
 
 }
