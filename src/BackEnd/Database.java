@@ -1,0 +1,382 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package BackEnd;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author amdemassh
+ */
+public class Database {
+
+    public static Connection Connect() {
+        String url = "jdbc:postgresql://localhost:5432/erpmarin_db";
+        String usuario = "erpmarin_user";
+        String senha = "1234";
+
+        String driverName = "org.postgresql.Driver";
+
+        Connection conn = null;
+        try {
+            Class.forName(driverName).newInstance();
+            conn = DriverManager.getConnection(url, usuario, senha);
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return conn;
+    }
+
+    public boolean cadastraConta(Conta x) {
+        String stm = "INSERT INTO financeiro_controle (titular,num_ficha,dataIN,dataOUT,num_suite,diaria,"
+                + "quiosque,frigobar,total,cartao,dinheiro,adiantamento,tipocartao) VALUES (?,?,?,?,?,?,"
+                + "?,?,?,?,?,?,?)";
+        PreparedStatement pst;
+        String dataTemp[] = x.getDataIn().split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+
+        Date date = Date.valueOf(dataTemp2);
+
+        String dataTemp3[] = x.getDataOut().split("/");
+        String dataTemp4 = dataTemp3[2] + "-" + dataTemp3[1] + "-" + dataTemp3[0];
+
+        Date date1 = Date.valueOf(dataTemp4);
+
+        Connection conn = Database.Connect();
+
+        try {
+            pst = conn.prepareStatement(stm);
+            pst.setString(1, x.getTitular());
+            pst.setInt(2, x.getNumFicha());
+            pst.setDate(3, date);
+            pst.setDate(4, date1);
+            pst.setInt(5, x.getNumsuite());
+            pst.setDouble(6, x.getDiaria());
+            pst.setDouble(7, x.getQuiosque());
+            pst.setDouble(8, x.getFrigobar());
+            pst.setDouble(9, x.getTotal());
+            pst.setDouble(10, x.getCartao());
+            pst.setDouble(11, x.getDinheiro());
+            pst.setDouble(12, x.getAdiantamento());
+            pst.setInt(13, x.getTipoCartao());
+            pst.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    }
+
+    public ResultSet relatorioFinanceiro(String dataIn, String dataOut) throws SQLException {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+
+        String dataTemp[] = dataIn.split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+
+        String dataTemp1[] = dataOut.split("/");
+        String dataTemp3 = dataTemp1[2] + "-" + dataTemp1[1] + "-" + dataTemp1[0];
+
+        Date date = Date.valueOf(dataTemp2);
+        Date date1 = Date.valueOf(dataTemp3);
+
+        stm = "select sum(diaria) as \"diaria\",sum(quiosque) as \"quiosque\",sum(frigobar) as \"frigobar\", "
+                + "sum(total) as \"total\" "
+                + "from financeiro_controle where datain >= '" + dataTemp2 + "' and dataout <= '" + dataTemp3 + "'";
+
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problema ao consultar "
+                    + "banco de dados, verifique!");
+        }
+
+        return rs;
+    }
+
+    public ResultSet buscaTodosProdutos() {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+
+        stm = "SELECT * from produto";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+
+    }
+
+    public boolean inserirProduto(String nome, float preco) {
+        PreparedStatement pst;
+        String stm = "INSERT INTO produto (nome,preco) values(?, ?)";
+
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            pst.setString(1, nome);
+            pst.setFloat(2, preco);
+            pst.execute();
+            conn.close();
+
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte" + e);
+            System.out.println("e" + e);
+        }
+        return false;
+    }
+
+    public ResultSet buscaProdutoRelatorio(String dataInicio, String dataFinal, String codigo) {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+        String dataTemp[] = dataInicio.split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+
+        String dataTemp1[] = dataFinal.split("/");
+        String dataTemp3 = dataTemp1[2] + "-" + dataTemp1[1] + "-" + dataTemp1[0];
+
+        Date date = Date.valueOf(dataTemp2);
+        Date date1 = Date.valueOf(dataTemp3);
+
+        stm = "select   t.id_produto,t.nome,sum(t.quantidade) as qtd, sum(t.valor_total) as valor "
+                + "from lancamento t where t.id_produto=" + codigo + " and (data_venda::date >= '" + dataTemp2 + "' AND data_venda::date <='" + dataTemp3 + "') "
+                + "group by t.id_produto,t.nome;";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+
+    }
+
+    public ResultSet buscaRelatorio(String dataInicio, String dataFinal) throws ParseException {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+        String dataTemp[] = dataInicio.split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+
+        String dataTemp1[] = dataFinal.split("/");
+        String dataTemp3 = dataTemp1[2] + "-" + dataTemp1[1] + "-" + dataTemp1[0];
+
+        Date date = Date.valueOf(dataTemp2);
+        Date date1 = Date.valueOf(dataTemp3);
+
+        stm = "select * FROM lancamento WHERE (data_venda BETWEEN '" + dataTemp2 + "' AND '" + dataTemp3 + "')";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+    }
+
+    public ResultSet buscaProduto(String codigo) {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+
+        stm = "SELECT * from produto where id = ? order by nome";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            pst.setInt(1, Integer.valueOf(codigo));
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+
+    }
+
+    public boolean insereComanda(int codigo, int quantidade, float valor_total, String nome, String data) throws ParseException {
+        PreparedStatement pst;
+        String dataTemp[] = data.split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+
+        Date date = Date.valueOf(dataTemp2);
+        String stm = "INSERT INTO lancamento (id_produto, quantidade, valor_total, nome, data_venda) values(?, ?, ?, ?, ?)";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            pst.setInt(1, codigo);
+            pst.setInt(2, quantidade);
+            pst.setFloat(3, valor_total);
+            pst.setString(4, nome);
+            pst.setDate(5, date);
+            pst.execute();
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return false;
+    }
+
+    public boolean insereAgenda(String nome, String telFixo, String telMovel) {
+        PreparedStatement pst;
+        String stm = "INSERT INTO agenda (nome, telefone_fixo,telefone_movel ) values(?, ?, ?)";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            pst.setString(1, nome);
+            pst.setString(2, telFixo);
+            pst.setString(3, telMovel);
+            pst.execute();
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return false;
+    }
+
+    public boolean insereFaturamentoEntrada(String valor, String data) {
+        PreparedStatement pst;
+        String dataTemp[] = data.split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+        Date date = Date.valueOf(dataTemp2);
+
+        String stm = "INSERT INTO faturamento_entrada (valor, data) values(?, ?)";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            pst.setFloat(1, (float) Double.parseDouble(valor));
+            pst.setDate(2, date);
+            pst.execute();
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return false;
+    }
+
+    public boolean insereFaturamentoSaida(String valor, String data) {
+        PreparedStatement pst;
+        String dataTemp[] = data.split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+        Date date = Date.valueOf(dataTemp2);
+
+        String stm = "INSERT INTO faturamento_saida (valor, data) values(?, ?)";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            pst.setFloat(1, (float) Double.parseDouble(valor));
+            pst.setDate(2, date);
+            pst.execute();
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return false;
+    }
+
+    public ArrayList buscaFaturamentoTotal(String dataIn, String dataOut) throws SQLException {
+        PreparedStatement pst;
+        ResultSet rs = null;
+        String stm = null;
+        ArrayList<String> retorno = new ArrayList<String>();
+
+        String dataTemp[] = dataIn.split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+
+        String dataTemp1[] = dataOut.split("/");
+        String dataTemp3 = dataTemp1[2] + "-" + dataTemp1[1] + "-" + dataTemp1[0];
+
+        Date date = Date.valueOf(dataTemp2);
+        Date date1 = Date.valueOf(dataTemp3);
+
+        //usar no banco date e date1
+        stm = "select sum(t.valor) as valor from faturamento_saida t where (data BETWEEN '" + date + "' AND '" + date1 + "')";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+
+        while (rs.next()) {
+            retorno.add(rs.getString("valor"));
+        }
+
+        stm = "select sum(t.valor) as valor from faturamento_entrada t where (data BETWEEN '" + date + "' AND '" + date1 + "')";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+
+        while (rs.next()) {
+            retorno.add(rs.getString("valor"));
+        }
+
+        return retorno;
+
+    }
+    
+    public ResultSet buscaFaturamentoEntrada(){
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+
+        stm = "SELECT * from faturamento_entrada order by data";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+    }
+    
+    public ResultSet buscaFaturamentoSaida(){
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+
+        stm = "SELECT * from faturamento_saida order by data";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+    }
+
+}
