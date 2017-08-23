@@ -13,6 +13,7 @@ import Telas.Cartao.Cartao_Cielo;
 import Telas.Cartao.Cartao_Rede;
 import BackEnd.AtualizadorHorario;
 import Fornecedores.CadastrarAgenda;
+import Funcionarios.Cadastra;
 import Telas.Financeiro.Faturamento_Entrada;
 import Telas.Financeiro.Faturamento_Saida;
 import Telas.Financeiro.Faturamento_Total;
@@ -409,6 +410,8 @@ public class Menu_Principal extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+        Cadastra funcionario = new Cadastra();
+        funcionario.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void menuRedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRedeActionPerformed

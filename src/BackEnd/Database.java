@@ -378,5 +378,54 @@ public class Database {
         }
         return rs;
     }
+    
+    public boolean cadastraFuncionario(Funcionario x) {
+        String stm = "INSERT INTO FUNCIONARIO (nome, cpf,rg,carteira,nacionalidade,tel1,tel2,titulo,rua,numerocasa,"
+                +"cidade,estado,nomeMae,nomePai,cargo,salario,extra,valorFolga,data_nascimento,data_admissao) VALUES (?,?,?,?,?,?,"
+                + "?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement pst;
+        String dataTemp[] = x.getDataNascimento().split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+
+        Date date = Date.valueOf(dataTemp2);
+        
+        
+        String dataTemp3[] = x.getDataEntrada().split("/");
+        String dataTemp4 = dataTemp3[2] + "-" + dataTemp3[1] + "-" + dataTemp3[0];
+        
+        Date date1 = Date.valueOf(dataTemp4);
+
+        Connection conn = Database.Connect();
+
+        try {
+            pst = conn.prepareStatement(stm);
+            pst.setString(1, x.getNome());
+            pst.setString(2, x.getCpf());
+            pst.setString(3, x.getRg());
+            pst.setString(4, x.getCarteira());
+            pst.setString(5, x.getNacionalidade());
+            pst.setString(6, x.getTelefone1());
+            pst.setString(7, x.getTelefone2());
+            pst.setString(8, x.getTituloEleitor());
+            pst.setString(9, x.getRua());
+            pst.setString(10, x.getNumeroCasa());
+            pst.setString(11, x.getCidade());
+            pst.setString(12, x.getEstado());
+            pst.setString(13, x.getNomeMae());
+            pst.setString(14, x.getNomePai());
+            pst.setString(15, x.getCargo());
+            pst.setDouble(16, x.getSalario());
+            pst.setDouble(17, x.getExtra());
+            pst.setDouble(18, x.getValorFolga());
+            pst.setDate(19, date);
+            pst.setDate(20, date1);            
+            pst.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    }
 
 }
