@@ -6,6 +6,7 @@
 package Telas.Quiosque;
 
 import BackEnd.Database;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -56,6 +57,8 @@ public class lancamento extends javax.swing.JFrame {
        URL url1 = this.getClass().getResource("/Imagens/02.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url1);
         this.setIconImage(iconeTitulo);
+        Color minhaCor = new Color(204,255,204);
+        this.getContentPane().setBackground(minhaCor);
 
     }
 

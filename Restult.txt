@@ -1,0 +1,288 @@
+
+
+Path = C:\Program Files\ERPMarin\.git
+
+Path = C:\Program Files\ERPMarin\.git\branches
+
+Path = C:\Program Files\ERPMarin\.git\hooks
+
+Path = C:\Program Files\ERPMarin\.git\logs
+
+Path = C:\Program Files\ERPMarin\.git\logs\refs
+
+Path = C:\Program Files\ERPMarin\.git\logs\refs\heads
+
+Path = C:\Program Files\ERPMarin\.git\logs\refs\remotes
+
+Path = C:\Program Files\ERPMarin\.git\logs\refs\remotes\origin
+
+Path = C:\Program Files\ERPMarin\.git\objects
+
+Path = C:\Program Files\ERPMarin\.git\objects\01
+
+Path = C:\Program Files\ERPMarin\.git\objects\02
+
+Path = C:\Program Files\ERPMarin\.git\objects\04
+
+Path = C:\Program Files\ERPMarin\.git\objects\09
+
+Path = C:\Program Files\ERPMarin\.git\objects\0c
+
+Path = C:\Program Files\ERPMarin\.git\objects\11
+
+Path = C:\Program Files\ERPMarin\.git\objects\14
+
+Path = C:\Program Files\ERPMarin\.git\objects\15
+
+Path = C:\Program Files\ERPMarin\.git\objects\17
+
+Path = C:\Program Files\ERPMarin\.git\objects\1b
+
+Path = C:\Program Files\ERPMarin\.git\objects\23
+
+Path = C:\Program Files\ERPMarin\.git\objects\28
+
+Path = C:\Program Files\ERPMarin\.git\objects\32
+
+Path = C:\Program Files\ERPMarin\.git\objects\33
+
+Path = C:\Program Files\ERPMarin\.git\objects\35
+
+Path = C:\Program Files\ERPMarin\.git\objects\36
+
+Path = C:\Program Files\ERPMarin\.git\objects\38
+
+Path = C:\Program Files\ERPMarin\.git\objects\3f
+
+Path = C:\Program Files\ERPMarin\.git\objects\40
+
+Path = C:\Program Files\ERPMarin\.git\objects\41
+
+Path = C:\Program Files\ERPMarin\.git\objects\42
+
+Path = C:\Program Files\ERPMarin\.git\objects\4d
+
+Path = C:\Program Files\ERPMarin\.git\objects\4f
+
+Path = C:\Program Files\ERPMarin\.git\objects\50
+
+Path = C:\Program Files\ERPMarin\.git\objects\55
+
+Path = C:\Program Files\ERPMarin\.git\objects\57
+
+Path = C:\Program Files\ERPMarin\.git\objects\58
+
+Path = C:\Program Files\ERPMarin\.git\objects\59
+
+Path = C:\Program Files\ERPMarin\.git\objects\5a
+
+Path = C:\Program Files\ERPMarin\.git\objects\5d
+
+Path = C:\Program Files\ERPMarin\.git\objects\5e
+
+Path = C:\Program Files\ERPMarin\.git\objects\61
+
+Path = C:\Program Files\ERPMarin\.git\objects\63
+
+Path = C:\Program Files\ERPMarin\.git\objects\66
+
+Path = C:\Program Files\ERPMarin\.git\objects\69
+
+Path = C:\Program Files\ERPMarin\.git\objects\6d
+
+Path = C:\Program Files\ERPMarin\.git\objects\6f
+
+Path = C:\Program Files\ERPMarin\.git\objects\71
+
+Path = C:\Program Files\ERPMarin\.git\objects\78
+
+Path = C:\Program Files\ERPMarin\.git\objects\7f
+
+Path = C:\Program Files\ERPMarin\.git\objects\83
+
+Path = C:\Program Files\ERPMarin\.git\objects\87
+
+Path = C:\Program Files\ERPMarin\.git\objects\88
+
+Path = C:\Program Files\ERPMarin\.git\objects\8b
+
+Path = C:\Program Files\ERPMarin\.git\objects\91
+
+Path = C:\Program Files\ERPMarin\.git\objects\92
+
+Path = C:\Program Files\ERPMarin\.git\objects\9d
+
+Path = C:\Program Files\ERPMarin\.git\objects\9e
+
+Path = C:\Program Files\ERPMarin\.git\objects\a1
+
+Path = C:\Program Files\ERPMarin\.git\objects\a3
+
+Path = C:\Program Files\ERPMarin\.git\objects\a5
+
+Path = C:\Program Files\ERPMarin\.git\objects\ac
+
+Path = C:\Program Files\ERPMarin\.git\objects\ae
+
+Path = C:\Program Files\ERPMarin\.git\objects\b1
+
+Path = C:\Program Files\ERPMarin\.git\objects\b5
+
+Path = C:\Program Files\ERPMarin\.git\objects\b8
+
+Path = C:\Program Files\ERPMarin\.git\objects\b9
+
+Path = C:\Program Files\ERPMarin\.git\objects\be
+
+Path = C:\Program Files\ERPMarin\.git\objects\c0
+
+Path = C:\Program Files\ERPMarin\.git\objects\c7
+
+Path = C:\Program Files\ERPMarin\.git\objects\cb
+
+Path = C:\Program Files\ERPMarin\.git\objects\cc
+
+Path = C:\Program Files\ERPMarin\.git\objects\cd
+
+Path = C:\Program Files\ERPMarin\.git\objects\d1
+
+Path = C:\Program Files\ERPMarin\.git\objects\d4
+
+Path = C:\Program Files\ERPMarin\.git\objects\d5
+
+Path = C:\Program Files\ERPMarin\.git\objects\d6
+
+Path = C:\Program Files\ERPMarin\.git\objects\dc
+
+Path = C:\Program Files\ERPMarin\.git\objects\dd
+
+Path = C:\Program Files\ERPMarin\.git\objects\e0
+
+Path = C:\Program Files\ERPMarin\.git\objects\e3
+
+Path = C:\Program Files\ERPMarin\.git\objects\e7
+
+Path = C:\Program Files\ERPMarin\.git\objects\ee
+
+Path = C:\Program Files\ERPMarin\.git\objects\f1
+
+Path = C:\Program Files\ERPMarin\.git\objects\f5
+
+Path = C:\Program Files\ERPMarin\.git\objects\f6
+
+Path = C:\Program Files\ERPMarin\.git\objects\fb
+
+Path = C:\Program Files\ERPMarin\.git\objects\fe
+
+Path = C:\Program Files\ERPMarin\.git\objects\info
+
+Path = C:\Program Files\ERPMarin\.git\objects\pack
+
+Path = C:\Program Files\ERPMarin\.git\refs
+
+Path = C:\Program Files\ERPMarin\.git\refs\heads
+
+Path = C:\Program Files\ERPMarin\.git\refs\remotes
+
+Path = C:\Program Files\ERPMarin\.git\refs\remotes\origin
+
+Path = C:\Program Files\ERPMarin\.git\refs\tags
+
+Path = C:\Program Files\ERPMarin\build
+
+Path = C:\Program Files\ERPMarin\build\classes
+
+Path = C:\Program Files\ERPMarin\build\classes\BackEnd
+
+Path = C:\Program Files\ERPMarin\build\classes\erpmarin
+
+Path = C:\Program Files\ERPMarin\build\classes\Fornecedores
+
+Path = C:\Program Files\ERPMarin\build\classes\Funcionarios
+
+Path = C:\Program Files\ERPMarin\build\classes\Imagens
+
+Path = C:\Program Files\ERPMarin\build\classes\Jasper
+
+Path = C:\Program Files\ERPMarin\build\classes\Telas
+
+Path = C:\Program Files\ERPMarin\build\classes\Telas\Cartao
+
+Path = C:\Program Files\ERPMarin\build\classes\Telas\Financeiro
+
+Path = C:\Program Files\ERPMarin\build\classes\Telas\Quiosque
+
+Path = C:\Program Files\ERPMarin\build\empty
+
+Path = C:\Program Files\ERPMarin\build\generated-sources
+
+Path = C:\Program Files\ERPMarin\build\generated-sources\ap-source-output
+
+Path = C:\Program Files\ERPMarin\Database
+
+Path = C:\Program Files\ERPMarin\dist
+
+Path = C:\Program Files\ERPMarin\dist\lib
+
+Path = C:\Program Files\ERPMarin\Imagens
+
+Path = C:\Program Files\ERPMarin\Libraries
+
+Path = C:\Program Files\ERPMarin\nbproject
+
+Path = C:\Program Files\ERPMarin\nbproject\private
+
+Path = C:\Program Files\ERPMarin\src
+
+Path = C:\Program Files\ERPMarin\src\BackEnd
+	 C:\Program Files\ERPMarin\src\BackEnd\AtualizadorHorario.java = 50 linhas
+	 C:\Program Files\ERPMarin\src\BackEnd\Conta.java = 211 linhas
+	 C:\Program Files\ERPMarin\src\BackEnd\Database.java = 448 linhas
+	 C:\Program Files\ERPMarin\src\BackEnd\Funcionario.java = 315 linhas
+
+Path = C:\Program Files\ERPMarin\src\erpmarin
+	 C:\Program Files\ERPMarin\src\erpmarin\ERPMarin.java = 31 linhas
+	 C:\Program Files\ERPMarin\src\erpmarin\Login.java = 209 linhas
+
+Path = C:\Program Files\ERPMarin\src\Fornecedores
+	 C:\Program Files\ERPMarin\src\Fornecedores\CadastrarAgenda.java = 249 linhas
+
+Path = C:\Program Files\ERPMarin\src\Funcionarios
+	 C:\Program Files\ERPMarin\src\Funcionarios\Cadastra.java = 529 linhas
+	 C:\Program Files\ERPMarin\src\Funcionarios\Lancamento.java = 477 linhas
+
+Path = C:\Program Files\ERPMarin\src\Imagens
+
+Path = C:\Program Files\ERPMarin\src\Jasper
+
+Path = C:\Program Files\ERPMarin\src\Telas
+	 C:\Program Files\ERPMarin\src\Telas\Menu_Principal.java = 594 linhas
+
+Path = C:\Program Files\ERPMarin\src\Telas\Cartao
+	 C:\Program Files\ERPMarin\src\Telas\Cartao\Cartao_Cielo.java = 240 linhas
+	 C:\Program Files\ERPMarin\src\Telas\Cartao\Cartao_Rede.java = 241 linhas
+
+Path = C:\Program Files\ERPMarin\src\Telas\Financeiro
+	 C:\Program Files\ERPMarin\src\Telas\Financeiro\Faturamento_Entrada.java = 246 linhas
+	 C:\Program Files\ERPMarin\src\Telas\Financeiro\Faturamento_Saida.java = 244 linhas
+	 C:\Program Files\ERPMarin\src\Telas\Financeiro\Faturamento_Total.java = 347 linhas
+	 C:\Program Files\ERPMarin\src\Telas\Financeiro\Financeiro_Cadastrar_Ficha.java = 392 linhas
+	 C:\Program Files\ERPMarin\src\Telas\Financeiro\Relatorio_Financeiro.java = 308 linhas
+	 C:\Program Files\ERPMarin\src\Telas\Financeiro\Visualiza_Faturamento_Entrada.java = 251 linhas
+	 C:\Program Files\ERPMarin\src\Telas\Financeiro\Visualiza_Faturamento_Saida.java = 248 linhas
+
+Path = C:\Program Files\ERPMarin\src\Telas\Quiosque
+	 C:\Program Files\ERPMarin\src\Telas\Quiosque\cadastrar.java = 212 linhas
+	 C:\Program Files\ERPMarin\src\Telas\Quiosque\exibeProdutos.java = 201 linhas
+	 C:\Program Files\ERPMarin\src\Telas\Quiosque\lancamento.java = 318 linhas
+	 C:\Program Files\ERPMarin\src\Telas\Quiosque\relatorio.java = 347 linhas
+	 C:\Program Files\ERPMarin\src\Telas\Quiosque\relatorioProduto.java = 345 linhas
+
+Path = C:\Program Files\ERPMarin\test
+
+
+
+=============================================
+Sub-pastas do projeto = 128 pastas
+Classes do projeto = 24 classes
+Linhas de codigo do projeto = 7053 linhas

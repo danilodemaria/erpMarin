@@ -7,6 +7,7 @@ package Funcionarios;
 
 
 import BackEnd.Database;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -48,6 +49,8 @@ public class Lancamento extends javax.swing.JFrame {
         getRootPane().getActionMap().put("ESCAPE", escapeAction);
         atualizaTela();
         codigo.requestFocus();
+        Color minhaCor = new Color(204,255,204);
+        this.getContentPane().setBackground(minhaCor);
     }
 
     public boolean fechar() {

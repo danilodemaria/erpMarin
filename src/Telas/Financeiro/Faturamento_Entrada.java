@@ -6,6 +6,8 @@
 package Telas.Financeiro;
 
 import BackEnd.Database;
+import BackEnd.ValorMasc;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -48,6 +50,9 @@ public class Faturamento_Entrada extends javax.swing.JFrame {
         URL url1 = this.getClass().getResource("/Imagens/02.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url1);
         this.setIconImage(iconeTitulo);
+        valor.addKeyListener(new ValorMasc(valor, 7, 2));
+        Color minhaCor = new Color(204,255,204);
+        this.getContentPane().setBackground(minhaCor);
     }
     
     public boolean fechar() {
@@ -74,6 +79,7 @@ public class Faturamento_Entrada extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Faturamento - Entrada");
+        setBackground(new java.awt.Color(204, 255, 204));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Fatura - Entrada");
@@ -164,6 +170,8 @@ public class Faturamento_Entrada extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
+        getAccessibleContext().setAccessibleParent(this);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -176,7 +184,8 @@ public class Faturamento_Entrada extends javax.swing.JFrame {
         // TODO add your handling code here:
         Database a = new Database();
         String aux = valor.getText();
-        aux = aux.replaceAll(",", ".");
+        aux = aux.replace(".", "");
+        aux = aux.replace(",", ".");
         System.out.println("aux: "+aux);
         
         if(a.insereFaturamentoEntrada(aux,data.getText())){
