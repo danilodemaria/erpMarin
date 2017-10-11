@@ -599,10 +599,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-<<<<<<< HEAD
     private javax.swing.JMenuItem menuPedido;
-=======
->>>>>>> 07ff0607853b642e67fc933f08703e11afc7c924
     private javax.swing.JMenuItem menuRede;
     // End of variables declaration//GEN-END:variables
 
