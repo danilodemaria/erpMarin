@@ -98,3 +98,18 @@ create table funcionario (
 	data_admissao timestamp
 
 );
+
+create table fornecedor(
+	id serial primary key,
+	telefone varchar(20),
+	nome varchar(70)
+);
+
+create table pedido(
+	id serial primary key,
+	id_fornecedor integer,
+	descricao varchar(100),
+	concluido boolean
+);
+
+ALTER TABLE pedido ADD FOREIGN KEY (id_fornecedor) REFERENCES fornecedor(id);

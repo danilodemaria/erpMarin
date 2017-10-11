@@ -6,6 +6,7 @@
 package Telas.Financeiro;
 
 import BackEnd.Database;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -58,6 +59,8 @@ public class Visualiza_Faturamento_Saida extends javax.swing.JFrame {
         getRootPane().getActionMap().put("ESCAPE", escapeAction);
         
         atualizaTabela();
+        Color minhaCor = new Color(204,255,204);
+        this.getContentPane().setBackground(minhaCor);
     }
     
     public boolean fechar() {
@@ -78,7 +81,7 @@ public class Visualiza_Faturamento_Saida extends javax.swing.JFrame {
         formatoDois.setMinimumFractionDigits(2);
         formatoDois.setParseBigDecimal(true);
         while (rs.next()) {
-            aux=formatoDois.format(rs.getInt("valor"));
+            aux=formatoDois.format(rs.getDouble("valor"));
             total = total + rs.getDouble("valor");
             id.add(rs.getString("id"));
             nome.add(aux);

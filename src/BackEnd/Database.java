@@ -444,5 +444,112 @@ public class Database {
         }
         return rs;
     }
+     
+      public ArrayList<Fornecedor> buscaTodosFornecedores(String nome) {
+        ArrayList<Fornecedor> saida = new ArrayList<>();
+        String stm = "select * from fornecedor where nome ilike  '%"+nome+"%'";
+        PreparedStatement pst;
+        ResultSet rs = null;
+
+        Connection conn = Database.Connect();
+
+        try {
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                saida.add(new Fornecedor(rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("telefone")));
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro no banco de dados, contate o suporte técnico e mostre a mensagem a seguir. " + ex);
+        }
+
+        return saida;
+    }
+
+    public int buscaFornecedor(String text) throws SQLException {
+        String stm = "select id from fornecedor where nome ilike '%"+text+"%'";
+        PreparedStatement pst;
+        ResultSet rs = null;
+        int id=0;
+        Connection conn = Database.Connect();
+
+        try {
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro no banco de dados, contate o suporte técnico e mostre a mensagem a seguir. " + ex);
+        }
+         while (rs.next()) {
+               id = rs.getInt("id");
+               
+            }
+        return id;
+    }
+    
+    public boolean insereCompra(String nome, String quantidade, String id) {
+        String stm = "INSERT INTO pedido (id_fornecedor, descricao, concluido, quantidade) VALUES (?,?,?,?)";
+        PreparedStatement pst;
+
+        Connection conn = Connect();
+        try {
+            pst = conn.prepareStatement(stm);
+            pst.setInt(1, Integer.parseInt(id));
+            pst.setString(2, nome);
+            pst.setBoolean(3, false);
+            pst.setInt(4, Integer.parseInt(quantidade));
+            pst.execute();
+
+            return true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro no banco de dados, contate o suporte técnico e mostre a mensagem a seguir. " + ex);
+        }
+        return false;
+    }
+
+    public ResultSet buscaPedidos(String text) {
+        String stm = "select a.id,id_fornecedor,descricao,concluido,quantidade,b.nome "
+                + "from pedido a left join fornecedor b on a.id_fornecedor = b.id where nome "
+                + "ilike '"+text+"' and a.concluido = false order by a.descricao";
+        
+        PreparedStatement pst;
+        ResultSet rs = null;
+        Connection conn = Database.Connect();
+
+        try {
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro no banco de dados, contate o suporte técnico e mostre a mensagem a seguir. " + ex);
+        }
+        
+        return rs;
+
+    }
+
+    public boolean atualizaPedidos(String id) throws SQLException {
+        
+        String stm = "UPDATE pedido SET concluido = true where id_fornecedor = "+id+"";
+        PreparedStatement pst;
+        Connection conn = Database.Connect();
+        boolean retorno=false;  
+        
+        try {
+            pst = conn.prepareStatement(stm);
+            pst.execute();
+            retorno=true;
+        } catch (SQLException ex) {            
+            retorno = false;
+        }
+        return retorno;
+    }        
+    
 
 }

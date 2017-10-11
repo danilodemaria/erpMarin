@@ -3,6 +3,8 @@ package Funcionarios;
 
 import BackEnd.Database;
 import BackEnd.Funcionario;
+import BackEnd.ValorMasc;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -21,6 +23,15 @@ public class Cadastra extends javax.swing.JFrame {
     MaskFormatter mascaracpf;
 
     public void capturaDados() {
+        String auxFolga, auxSalario, auxExtra;
+        auxFolga = valorFolga.getText();
+        auxSalario = valorSalario.getText();
+        auxExtra = valorExtra.getText();
+        
+        auxFolga = auxFolga.replace(".", "");
+        auxFolga = auxFolga.replace(",",".");
+        
+        
 
         Funcionario x = new Funcionario();
         Database conexao = new Database();
@@ -51,6 +62,7 @@ public class Cadastra extends javax.swing.JFrame {
         } else {
             System.out.println("Funcionário não cadastrado");
         }
+        
     }
     
     public void limpaCampos(){
@@ -92,7 +104,11 @@ public class Cadastra extends javax.swing.JFrame {
         URL url1 = this.getClass().getResource("/Imagens/02.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url1);
         this.setIconImage(iconeTitulo);
-
+        Color minhaCor = new Color(204,255,204);
+        this.getContentPane().setBackground(minhaCor);
+        valorExtra.addKeyListener(new ValorMasc(valorExtra, 7, 2));
+        valorFolga.addKeyListener(new ValorMasc(valorFolga, 7, 2));
+        valorSalario.addKeyListener(new ValorMasc(valorSalario, 7, 2));
     }
 
     public boolean fechar() {
@@ -266,6 +282,11 @@ public class Cadastra extends javax.swing.JFrame {
         jLabel20.setText("Valor por folga");
 
         valorSalario.setText("0.00");
+        valorSalario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valorSalarioActionPerformed(evt);
+            }
+        });
 
         valorFolga.setText("0.00");
 
@@ -417,12 +438,13 @@ public class Cadastra extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(valorExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(valorFolga, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3))
-                    .addComponent(jLabel20))
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel20))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(valorFolga)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCadastrar)
@@ -446,6 +468,10 @@ public class Cadastra extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_buttonSairMouseClicked
+
+    private void valorSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorSalarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_valorSalarioActionPerformed
 
     /**
      * @param args the command line arguments

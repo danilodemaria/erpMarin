@@ -6,6 +6,8 @@
 package Telas.Financeiro;
 
 import BackEnd.Database;
+import BackEnd.ValorMasc;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -48,6 +50,9 @@ public class Faturamento_Saida extends javax.swing.JFrame {
          URL url1 = this.getClass().getResource("/Imagens/02.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url1);
         this.setIconImage(iconeTitulo);
+        valor.addKeyListener(new ValorMasc(valor, 7, 2));
+        Color minhaCor = new Color(204,255,204);
+        this.getContentPane().setBackground(minhaCor);
     }
     
        public boolean fechar() {
@@ -181,7 +186,9 @@ public class Faturamento_Saida extends javax.swing.JFrame {
         // TODO add your handling code here:
         Database a = new Database();
         String aux = valor.getText();
-        aux = aux.replaceAll(",", ".");
+        aux = aux.replace(".", "");
+        aux = aux.replace(",", ".");
+        System.out.println(aux);
         if(a.insereFaturamentoSaida(aux,data.getText())){
             JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
             valor.setText(null);

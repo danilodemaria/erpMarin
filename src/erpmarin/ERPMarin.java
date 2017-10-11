@@ -24,7 +24,7 @@ public class ERPMarin {
         Login seguro = new Login();
         seguro.setVisible(true);
         menu.enable(false);
-        
+       
     }
     
 }

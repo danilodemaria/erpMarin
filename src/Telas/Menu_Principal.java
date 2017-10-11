@@ -5,6 +5,7 @@
  */
 package Telas;
 
+import BackEnd.AplicaNimbusLookAndFeel;
 import Telas.Quiosque.exibeProdutos;
 import Telas.Quiosque.cadastrar;
 import Telas.Financeiro.Relatorio_Financeiro;
@@ -20,9 +21,12 @@ import Telas.Financeiro.Faturamento_Saida;
 import Telas.Financeiro.Faturamento_Total;
 import Telas.Financeiro.Visualiza_Faturamento_Entrada;
 import Telas.Financeiro.Visualiza_Faturamento_Saida;
+import Telas.Pedidos.ExibePedidos;
+import Telas.Pedidos.NovoPedido;
 import Telas.Quiosque.lancamento;
 import Telas.Quiosque.relatorio;
 import Telas.Quiosque.relatorioProduto;
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -51,7 +55,6 @@ public class Menu_Principal extends javax.swing.JFrame {
     public Menu_Principal() {
         this.setExtendedState(Frame.MAXIMIZED_BOTH);
         initComponents();
-        mostrarHora();
         KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
         Action escapeAction = new AbstractAction() {
             @Override
@@ -66,6 +69,9 @@ public class Menu_Principal extends javax.swing.JFrame {
         ImageIcon imageIcon = new ImageIcon(url);
 
         alteraIcone();
+        AplicaNimbusLookAndFeel.pegaNimbus();
+        Color minhaCor = new Color(204,255,204);
+        this.getContentPane().setBackground(minhaCor);
     }
 
     public boolean fechar() {
@@ -86,12 +92,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         this.setIconImage(iconeTitulo);
     }
 
-    public void mostrarHora() {
-        AtualizadorHorario ah = new AtualizadorHorario(relogio);
-        ah.mostrarData(true);
-        Thread thHora = ah;
-        thHora.start();
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -106,9 +107,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
-        labelImagem = new javax.swing.JLabel();
-        relogio = new javax.swing.JLabel();
-        labelGif = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -135,6 +134,9 @@ public class Menu_Principal extends javax.swing.JFrame {
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        menuPedido = new javax.swing.JMenuItem();
+        jMenuItem25 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -148,13 +150,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hotel Marin Château - V.1.0");
 
-        labelImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Guarda-sol.jpg"))); // NOI18N
-
-        relogio.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        relogio.setText("Relógio");
-
-        labelGif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/giphy.gif"))); // NOI18N
-        labelGif.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo.jpg"))); // NOI18N
 
         jMenu1.setText("Financeiro");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
@@ -338,6 +334,26 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
+        jMenu7.setText("Pedidos");
+
+        menuPedido.setText("Cadastrar Pedido");
+        menuPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPedidoActionPerformed(evt);
+            }
+        });
+        jMenu7.add(menuPedido);
+
+        jMenuItem25.setText("Visualizar Pedidos");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem25);
+
+        jMenuBar1.add(jMenu7);
+
         jMenu5.setText("Sair");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -357,30 +373,13 @@ public class Menu_Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addComponent(labelImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 1021, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(relogio)
-                        .addGap(221, 221, 221))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(labelGif, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(labelGif, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(labelImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(22, 22, 22)
-                .addComponent(relogio)
-                .addGap(25, 25, 25))
+                .addComponent(jLabel1)
+                .addContainerGap(200, Short.MAX_VALUE))
         );
 
         pack();
@@ -519,6 +518,18 @@ public class Menu_Principal extends javax.swing.JFrame {
         funcionario.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void menuPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedidoActionPerformed
+        // TODO add your handling code here:
+        NovoPedido novo = new NovoPedido();
+        novo.setVisible(true);                
+    }//GEN-LAST:event_menuPedidoActionPerformed
+
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
+        // TODO add your handling code here:
+        ExibePedidos exibe = new ExibePedidos();
+        exibe.setVisible(true);
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -555,12 +566,14 @@ public class Menu_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -578,6 +591,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -585,10 +599,8 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JLabel labelGif;
-    private javax.swing.JLabel labelImagem;
+    private javax.swing.JMenuItem menuPedido;
     private javax.swing.JMenuItem menuRede;
-    private javax.swing.JLabel relogio;
     // End of variables declaration//GEN-END:variables
 
 }
