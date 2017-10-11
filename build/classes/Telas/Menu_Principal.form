@@ -249,6 +249,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+<<<<<<< HEAD
         <Menu class="javax.swing.JMenu" name="jMenu7">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pedidos"/>
@@ -272,6 +273,8 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+=======
+>>>>>>> 07ff0607853b642e67fc933f08703e11afc7c924
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sair"/>
