@@ -5,6 +5,7 @@
  */
 package Telas.Cartao;
 
+import BackEnd.ValorMasc;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -12,7 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.math.RoundingMode;
 import java.net.URL;
+import java.sql.Date;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
@@ -40,12 +44,13 @@ public class Cartao_Rede extends javax.swing.JFrame {
         };
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escapeKeyStroke, "ESCAPE");
         getRootPane().getActionMap().put("ESCAPE", escapeAction);
-        
-       URL url1 = this.getClass().getResource("/Imagens/02.png");
+
+        URL url1 = this.getClass().getResource("/Imagens/02.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url1);
         this.setIconImage(iconeTitulo);
-        Color minhaCor = new Color(204,255,204);
+        Color minhaCor = new Color(204, 255, 204);
         this.getContentPane().setBackground(minhaCor);
+        textValor.addKeyListener(new ValorMasc(textValor, 7, 2));
     }
 
     public boolean fechar() {
@@ -71,6 +76,8 @@ public class Cartao_Rede extends javax.swing.JFrame {
         textValorAtualizado = new javax.swing.JTextField();
         buttonCalcula = new javax.swing.JButton();
         buttonSair = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        dataPagamento = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cartão Rede");
@@ -91,9 +98,17 @@ public class Cartao_Rede extends javax.swing.JFrame {
         });
 
         comboCartao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Crédito", "Débito" }));
+        comboCartao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCartaoActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Valor R$ ");
+
+        textValorAtualizado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        textValorAtualizado.setForeground(new java.awt.Color(255, 0, 0));
 
         buttonCalcula.setText("Calcular");
         buttonCalcula.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,15 +124,34 @@ public class Cartao_Rede extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("Data Pagamento");
+
+        dataPagamento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        dataPagamento.setForeground(new java.awt.Color(255, 0, 0));
+        dataPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataPagamentoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonSair)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonCalcula))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(dataPagamento))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
@@ -129,14 +163,11 @@ public class Cartao_Rede extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(textValor)
-                                    .addComponent(comboCartao, 0, 169, Short.MAX_VALUE)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(buttonSair)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonCalcula)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                                    .addComponent(comboCartao, 0, 169, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 125, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(99, 99, 99))
         );
@@ -157,11 +188,14 @@ public class Cartao_Rede extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(textValorAtualizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(dataPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCalcula)
-                    .addComponent(buttonSair))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(buttonSair)))
         );
 
         pack();
@@ -172,17 +206,36 @@ public class Cartao_Rede extends javax.swing.JFrame {
         double aux = 0;
         DecimalFormat df = new DecimalFormat("####.##");
         df.setRoundingMode(RoundingMode.HALF_UP);
+        String data = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        Date suaData;
+        suaData = Date.valueOf(data);
+        String auxData;
+
         if (String.valueOf(comboCartao.getSelectedItem()).equals("Crédito")) {
-            aux = Double.parseDouble(textValor.getText());
+            aux = converteValor(textValor.getText());
             aux = aux - (aux * 0.0367);
             textValorAtualizado.setText(String.valueOf(df.format(aux)));
+            suaData.setDate(suaData.getDate() + 30);
         } else {
-            aux = Double.parseDouble(textValor.getText());
+            aux = converteValor(textValor.getText());
             aux = aux - (aux * 0.0257);
             textValorAtualizado.setText(String.valueOf(df.format(aux)));
+            suaData.setDate(suaData.getDate() + 2);
         }
+        auxData = String.valueOf(suaData);
+
+        SimpleDateFormat sfd = new SimpleDateFormat("dd/MM/yyyy");
+
+        dataPagamento.setText(sfd.format(suaData));
 
     }//GEN-LAST:event_buttonCalculaMouseClicked
+
+    public double converteValor(String aux) {
+
+        aux = aux.replace(".", "");
+        aux = aux.replace(",", ".");
+        return Double.parseDouble(aux);
+    }
 
     private void buttonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSairMouseClicked
         // TODO add your handling code here:
@@ -193,6 +246,15 @@ public class Cartao_Rede extends javax.swing.JFrame {
         // TODO add your handling code here:
         buttonCalculaMouseClicked(null);
     }//GEN-LAST:event_textValorActionPerformed
+
+    private void dataPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataPagamentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataPagamentoActionPerformed
+
+    private void comboCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCartaoActionPerformed
+        // TODO add your handling code here:
+        buttonCalculaMouseClicked(null);
+    }//GEN-LAST:event_comboCartaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,10 +296,12 @@ public class Cartao_Rede extends javax.swing.JFrame {
     private javax.swing.JButton buttonCalcula;
     private javax.swing.JButton buttonSair;
     private javax.swing.JComboBox<String> comboCartao;
+    private javax.swing.JTextField dataPagamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField textValor;
     private javax.swing.JTextField textValorAtualizado;
     // End of variables declaration//GEN-END:variables

@@ -5,7 +5,7 @@
  */
 package Telas.Cartao;
 
-
+import BackEnd.ValorMasc;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -13,7 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.math.RoundingMode;
 import java.net.URL;
+import java.sql.Date;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
@@ -45,8 +48,9 @@ public class Cartao_Cielo extends javax.swing.JFrame {
         URL url1 = this.getClass().getResource("/Imagens/02.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url1);
         this.setIconImage(iconeTitulo);
-        Color minhaCor = new Color(204,255,204);
+        Color minhaCor = new Color(204, 255, 204);
         this.getContentPane().setBackground(minhaCor);
+        textValor.addKeyListener(new ValorMasc(textValor, 7, 2));
     }
 
     public boolean fechar() {
@@ -72,6 +76,8 @@ public class Cartao_Cielo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        dataPagamento = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cartão Cielo");
@@ -86,6 +92,15 @@ public class Cartao_Cielo extends javax.swing.JFrame {
         });
 
         comboCartao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Crédito", "Débito" }));
+        comboCartao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCartaoActionPerformed(evt);
+            }
+        });
+
+        textValorAtualizado.setEditable(false);
+        textValorAtualizado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        textValorAtualizado.setForeground(new java.awt.Color(255, 0, 0));
 
         buttonCalcula.setText("Calcular");
         buttonCalcula.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,12 +125,23 @@ public class Cartao_Cielo extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Valor R$ ");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("Data Pagamento");
+
+        dataPagamento.setEditable(false);
+        dataPagamento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        dataPagamento.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 91, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(91, 91, 91))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -130,16 +156,18 @@ public class Cartao_Cielo extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(textValor)
-                                    .addComponent(comboCartao, 0, 169, Short.MAX_VALUE)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(comboCartao, 0, 169, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(dataPagamento)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(buttonSair)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonCalcula)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(91, 91, 91))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,11 +186,15 @@ public class Cartao_Cielo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(textValorAtualizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonCalcula)
-                    .addComponent(buttonSair))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(jLabel5)
+                    .addComponent(dataPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonSair)
+                    .addComponent(buttonCalcula))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -173,16 +205,35 @@ public class Cartao_Cielo extends javax.swing.JFrame {
         double aux = 0;
         DecimalFormat df = new DecimalFormat("####.##");
         df.setRoundingMode(RoundingMode.HALF_UP);
+        String data = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        Date suaData;
+        suaData = Date.valueOf(data);
+        String auxData;
+
         if (String.valueOf(comboCartao.getSelectedItem()).equals("Crédito")) {
-            aux = Double.parseDouble(textValor.getText());
+            aux = converteValor(textValor.getText());
             aux = aux - (aux * 0.0237);
             textValorAtualizado.setText(String.valueOf(df.format(aux)));
+            suaData.setDate(suaData.getDate() + 30);
         } else {
-            aux = Double.parseDouble(textValor.getText());
+            aux = converteValor(textValor.getText());
             aux = aux - (aux * 0.0166);
             textValorAtualizado.setText(String.valueOf(df.format(aux)));
+            suaData.setDate(suaData.getDate() + 2);
         }
+        auxData = String.valueOf(suaData);
+
+        SimpleDateFormat sfd = new SimpleDateFormat("dd/MM/yyyy");
+
+        dataPagamento.setText(sfd.format(suaData));
     }//GEN-LAST:event_buttonCalculaMouseClicked
+
+    public double converteValor(String aux) {
+
+        aux = aux.replace(".", "");
+        aux = aux.replace(",", ".");
+        return Double.parseDouble(aux);
+    }
 
     private void buttonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSairMouseClicked
         // TODO add your handling code here:
@@ -193,6 +244,11 @@ public class Cartao_Cielo extends javax.swing.JFrame {
         // TODO add your handling code here:
         buttonCalculaMouseClicked(null);
     }//GEN-LAST:event_textValorActionPerformed
+
+    private void comboCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCartaoActionPerformed
+        // TODO add your handling code here:
+        buttonCalculaMouseClicked(null);
+    }//GEN-LAST:event_comboCartaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,10 +289,12 @@ public class Cartao_Cielo extends javax.swing.JFrame {
     private javax.swing.JButton buttonCalcula;
     private javax.swing.JButton buttonSair;
     private javax.swing.JComboBox<String> comboCartao;
+    private javax.swing.JTextField dataPagamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField textValor;
     private javax.swing.JTextField textValorAtualizado;
     // End of variables declaration//GEN-END:variables
