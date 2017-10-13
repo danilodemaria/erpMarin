@@ -90,10 +90,10 @@ public class lancamento extends javax.swing.JFrame {
         data = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Lançamento");
+        setTitle("Lançamento de Comandas Externas");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Lançamento de Comandas");
+        jLabel1.setText("Lançamento de Comandas (EXT)");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Código");

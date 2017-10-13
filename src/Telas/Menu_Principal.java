@@ -12,8 +12,6 @@ import Telas.Financeiro.Relatorio_Financeiro;
 import Telas.Financeiro.Financeiro_Cadastrar_Ficha;
 import Telas.Cartao.Cartao_Cielo;
 import Telas.Cartao.Cartao_Rede;
-import BackEnd.AtualizadorHorario;
-import Fornecedores.CadastrarAgenda;
 import Funcionarios.Cadastra;
 import Funcionarios.Lancamento;
 import Telas.Financeiro.Faturamento_Entrada;
@@ -23,6 +21,7 @@ import Telas.Financeiro.Visualiza_Faturamento_Entrada;
 import Telas.Financeiro.Visualiza_Faturamento_Saida;
 import Telas.Pedidos.ExibePedidos;
 import Telas.Pedidos.NovoPedido;
+import Telas.Quiosque.LancaInterno;
 import Telas.Quiosque.lancamento;
 import Telas.Quiosque.relatorio;
 import Telas.Quiosque.relatorioProduto;
@@ -120,6 +119,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
@@ -130,10 +130,6 @@ public class Menu_Principal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItem15 = new javax.swing.JMenuItem();
-        jMenuItem17 = new javax.swing.JMenuItem();
-        jMenuItem18 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         menuPedido = new javax.swing.JMenuItem();
         jMenuItem25 = new javax.swing.JMenuItem();
@@ -236,13 +232,21 @@ public class Menu_Principal extends javax.swing.JFrame {
         jMenu2.add(jMenuItem8);
 
         jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
-        jMenuItem10.setText("Lançar Comanda");
+        jMenuItem10.setText("Lançar Comanda (Ext)");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem10ActionPerformed(evt);
             }
         });
         jMenu2.add(jMenuItem10);
+
+        jMenuItem15.setText("Lançar Comanda (Int)");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem15);
 
         jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F10, 0));
         jMenuItem12.setText("Exibir Produtos");
@@ -315,24 +319,6 @@ public class Menu_Principal extends javax.swing.JFrame {
         jMenu4.add(jMenuItem7);
 
         jMenuBar1.add(jMenu4);
-
-        jMenu6.setText("Fornecedores");
-
-        jMenuItem15.setText("Cadastrar");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem15);
-
-        jMenuItem17.setText("Editar");
-        jMenu6.add(jMenuItem17);
-
-        jMenuItem18.setText("Visualizar");
-        jMenu6.add(jMenuItem18);
-
-        jMenuBar1.add(jMenu6);
 
         jMenu7.setText("Pedidos");
 
@@ -461,12 +447,6 @@ public class Menu_Principal extends javax.swing.JFrame {
         telaProduto.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        // TODO add your handling code here:
-        CadastrarAgenda agenda_cadastro = new CadastrarAgenda();
-        agenda_cadastro.setVisible(true);
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
-
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
         Faturamento_Entrada faturaEntrada = new Faturamento_Entrada();
@@ -530,6 +510,12 @@ public class Menu_Principal extends javax.swing.JFrame {
         exibe.setVisible(true);
     }//GEN-LAST:event_jMenuItem25ActionPerformed
 
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+        LancaInterno a = new LancaInterno();
+        a.setVisible(true);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -572,7 +558,6 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -583,8 +568,6 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem17;
-    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;

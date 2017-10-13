@@ -550,6 +550,31 @@ public class Database {
         }
         return retorno;
     }        
-    
+
+    public boolean insereComandaInterna(int codigo, int quantidade, float valor_total, String nome, String data) {
+        PreparedStatement pst;
+        String dataTemp[] = data.split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+
+        Date date = Date.valueOf(dataTemp2);
+        String stm = "INSERT INTO lancamentoInterno (id_produto, quantidade, valor_total, nome, data_venda) values(?, ?, ?, ?, ?)";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            pst.setInt(1, codigo);
+            pst.setInt(2, quantidade);
+            pst.setFloat(3, valor_total);
+            pst.setString(4, nome);
+            pst.setDate(5, date);
+            pst.execute();
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return false;
+    }
 
 }
+
+

@@ -53,7 +53,16 @@ create table lancamento(
 	data_venda timestamp
 );
 
-ALTER TABLE lancamento ADD FOREIGN KEY (id_produto) REFERENCES produto(id);
+create table lancamentoInterno(
+	id serial primary key,
+	id_produto integer,
+	quantidade integer,
+	valor_total decimal(10,2),
+	nome varchar(50),
+	data_venda timestamp
+);
+
+
 
 create table agenda (
 	id serial primary key,
@@ -113,3 +122,6 @@ create table pedido(
 );
 
 ALTER TABLE pedido ADD FOREIGN KEY (id_fornecedor) REFERENCES fornecedor(id);
+ALTER TABLE lancamento ADD FOREIGN KEY (id_produto) REFERENCES produto(id);
+ALTER TABLE lancamentoInterno ADD FOREIGN KEY (id_produto) REFERENCES produto(id);
+TRUNCATE TABLE nome_tabela RESTART IDENTITY;
