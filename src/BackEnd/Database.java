@@ -198,6 +198,30 @@ public class Database {
         }
         return rs;
     }
+    
+    public ResultSet buscaRelatorioInterno(String dataInicio, String dataFinal) throws ParseException {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+        String dataTemp[] = dataInicio.split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+
+        String dataTemp1[] = dataFinal.split("/");
+        String dataTemp3 = dataTemp1[2] + "-" + dataTemp1[1] + "-" + dataTemp1[0];
+
+        Date date = Date.valueOf(dataTemp2);
+        Date date1 = Date.valueOf(dataTemp3);
+
+        stm = "select * FROM lancamentointerno WHERE (data_venda BETWEEN '" + dataTemp2 + "' AND '" + dataTemp3 + "')";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+    }
 
     public ResultSet buscaProduto(String codigo) {
         ResultSet rs = null;
@@ -573,6 +597,33 @@ public class Database {
             JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
         }
         return false;
+    }
+    
+    public ResultSet buscaProdutoRelatorioInterno(String dataInicio, String dataFinal, String codigo) {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+        String dataTemp[] = dataInicio.split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+
+        String dataTemp1[] = dataFinal.split("/");
+        String dataTemp3 = dataTemp1[2] + "-" + dataTemp1[1] + "-" + dataTemp1[0];
+
+        Date date = Date.valueOf(dataTemp2);
+        Date date1 = Date.valueOf(dataTemp3);
+
+        stm = "select   t.id_produto,t.nome,sum(t.quantidade) as qtd, sum(t.valor_total) as valor "
+                + "from lancamentointerno t where t.id_produto=" + codigo + " and (data_venda::date >= '" + dataTemp2 + "' AND data_venda::date <='" + dataTemp3 + "') "
+                + "group by t.id_produto,t.nome;";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+
     }
 
 }
