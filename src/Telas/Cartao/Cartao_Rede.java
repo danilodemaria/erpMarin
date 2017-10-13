@@ -91,12 +91,14 @@ public class Cartao_Rede extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Tipo");
 
+        textValor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         textValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textValorActionPerformed(evt);
             }
         });
 
+        comboCartao.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         comboCartao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Crédito", "Débito" }));
         comboCartao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,7 +194,7 @@ public class Cartao_Rede extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(dataPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCalcula)
                     .addComponent(buttonSair)))
