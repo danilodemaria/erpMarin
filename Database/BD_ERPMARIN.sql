@@ -121,6 +121,23 @@ create table pedido(
 	concluido boolean
 );
 
+create table manutencao(
+	id serial primary key,
+	descricao varchar(150),
+	concluido boolean,
+	data timestamp
+);
+
+create table porcao(
+	id serial primary key,
+	camarao integer,
+	lula integer,
+	isca integer,
+	bolinho integer,
+	casquinha integer,
+	data timestamp
+);	
+
 ALTER TABLE pedido ADD FOREIGN KEY (id_fornecedor) REFERENCES fornecedor(id);
 ALTER TABLE lancamento ADD FOREIGN KEY (id_produto) REFERENCES produto(id);
 ALTER TABLE lancamentoInterno ADD FOREIGN KEY (id_produto) REFERENCES produto(id);

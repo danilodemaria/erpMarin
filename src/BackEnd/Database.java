@@ -626,6 +626,101 @@ public class Database {
 
     }
 
+    public boolean insereManutencao(String data, String descricao) {
+        PreparedStatement pst;
+        String dataTemp[] = data.split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+
+        Date date = Date.valueOf(dataTemp2);
+        String stm = "INSERT INTO manutencao (descricao, data, concluido) values(?, ?, ?)";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            pst.setString(1, descricao);
+            pst.setDate(2, date);
+            pst.setBoolean(3, false);     
+            pst.execute();
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return false;
+    }
+
+    public boolean inserePorcao(String camarao, String lula, String isca, String bolinho, String casquinha, String data) {
+        PreparedStatement pst;
+        String dataTemp[] = data.split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+
+        Date date = Date.valueOf(dataTemp2);
+        String stm = "INSERT INTO porcao (camarao,lula,isca,bolinho,casquinha,data) values(?,?,?,?,?,?)";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            pst.setInt(1, Integer.parseInt(camarao));
+            pst.setInt(2, Integer.parseInt(lula));
+            pst.setInt(3, Integer.parseInt(isca));
+            pst.setInt(4, Integer.parseInt(bolinho));
+            pst.setInt(5, Integer.parseInt(casquinha));
+            pst.setDate(6, date);     
+            pst.execute();
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return false;
+    }
+
+    public ResultSet buscaManutenções() {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+        
+        stm = "select * from manutencao where concluido = false order by descricao";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+    }
+
+    public boolean marcaManutencaoFeito(String id) {
+        String stm = "UPDATE manutencao SET concluido = true where id = "+id+"";
+        PreparedStatement pst;
+        Connection conn = Database.Connect();
+        boolean retorno=false;  
+        
+        try {
+            pst = conn.prepareStatement(stm);
+            pst.execute();
+            retorno=true;
+        } catch (SQLException ex) {            
+            retorno = false;
+        }
+        return retorno;
+    }
+
+    public ResultSet buscaManutençõesFeitas() {
+         ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+        
+        stm = "select * from manutencao where concluido = true order by descricao";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+    }
+
 }
 
 

@@ -19,9 +19,13 @@ import Telas.Financeiro.Faturamento_Saida;
 import Telas.Financeiro.Faturamento_Total;
 import Telas.Financeiro.Visualiza_Faturamento_Entrada;
 import Telas.Financeiro.Visualiza_Faturamento_Saida;
+import Telas.Manutencao.CadastraManutencao;
+import Telas.Manutencao.ExibeManuConcluidas;
+import Telas.Manutencao.ExibeManutencoes;
 import Telas.Pedidos.ExibePedidos;
 import Telas.Pedidos.NovoPedido;
 import Telas.Quiosque.LancaInterno;
+import Telas.Quiosque.estoquePorcoes;
 import Telas.Quiosque.lancamento;
 import Telas.Quiosque.relatorio;
 import Telas.Quiosque.relatorioInterno;
@@ -39,7 +43,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
@@ -123,6 +126,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         menuRelatorioGeralInt = new javax.swing.JMenuItem();
         menuRelatorioExt = new javax.swing.JMenuItem();
         menuRelatorioInt = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         menuCartao = new javax.swing.JMenu();
         menuRede = new javax.swing.JMenuItem();
         menuCielo = new javax.swing.JMenuItem();
@@ -133,7 +137,11 @@ public class Menu_Principal extends javax.swing.JFrame {
         menuPedidos = new javax.swing.JMenu();
         menuCadastraPedido = new javax.swing.JMenuItem();
         menuVisualizaPedidos = new javax.swing.JMenuItem();
+        menuEnviaPedido = new javax.swing.JMenuItem();
         menuManutencao = new javax.swing.JMenu();
+        menuCadastraManutencao = new javax.swing.JMenuItem();
+        menuVisualizaManutencao = new javax.swing.JMenuItem();
+        menuManuConcluidas = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -283,6 +291,14 @@ public class Menu_Principal extends javax.swing.JFrame {
         });
         menuQuiosque.add(menuRelatorioInt);
 
+        jMenuItem3.setText("Controle Entrada Porções");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        menuQuiosque.add(jMenuItem3);
+
         jMenuBar1.add(menuQuiosque);
 
         menuCartao.setText("Cartão");
@@ -346,9 +362,42 @@ public class Menu_Principal extends javax.swing.JFrame {
         });
         menuPedidos.add(menuVisualizaPedidos);
 
+        menuEnviaPedido.setText("Enviar pedido por Email");
+        menuEnviaPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEnviaPedidoActionPerformed(evt);
+            }
+        });
+        menuPedidos.add(menuEnviaPedido);
+
         jMenuBar1.add(menuPedidos);
 
         menuManutencao.setText("Manutenção");
+
+        menuCadastraManutencao.setText("Cadastrar Manutenção");
+        menuCadastraManutencao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastraManutencaoActionPerformed(evt);
+            }
+        });
+        menuManutencao.add(menuCadastraManutencao);
+
+        menuVisualizaManutencao.setText("Não Concluídas");
+        menuVisualizaManutencao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuVisualizaManutencaoActionPerformed(evt);
+            }
+        });
+        menuManutencao.add(menuVisualizaManutencao);
+
+        menuManuConcluidas.setText("Concluídas");
+        menuManuConcluidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuManuConcluidasActionPerformed(evt);
+            }
+        });
+        menuManutencao.add(menuManuConcluidas);
+
         jMenuBar1.add(menuManutencao);
 
         jMenu5.setText("Sair");
@@ -539,6 +588,34 @@ public class Menu_Principal extends javax.swing.JFrame {
         a.setVisible(true);
     }//GEN-LAST:event_menuRelatorioGeralIntActionPerformed
 
+    private void menuCadastraManutencaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastraManutencaoActionPerformed
+        // TODO add your handling code here:
+        CadastraManutencao a = new CadastraManutencao();
+        a.setVisible(true);
+    }//GEN-LAST:event_menuCadastraManutencaoActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        estoquePorcoes a = new estoquePorcoes();
+        a.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void menuEnviaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEnviaPedidoActionPerformed
+
+    }//GEN-LAST:event_menuEnviaPedidoActionPerformed
+
+    private void menuVisualizaManutencaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVisualizaManutencaoActionPerformed
+        // TODO add your handling code here:
+        ExibeManutencoes a = new ExibeManutencoes();
+        a.setVisible(true);
+    }//GEN-LAST:event_menuVisualizaManutencaoActionPerformed
+
+    private void menuManuConcluidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuManuConcluidasActionPerformed
+        // TODO add your handling code here:
+        ExibeManuConcluidas a = new ExibeManuConcluidas();
+        a.setVisible(true);
+    }//GEN-LAST:event_menuManuConcluidasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -581,9 +658,11 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem menuCadastraFicha;
     private javax.swing.JMenuItem menuCadastraFuncionario;
+    private javax.swing.JMenuItem menuCadastraManutencao;
     private javax.swing.JMenuItem menuCadastraPedido;
     private javax.swing.JMenuItem menuCadastraProduto;
     private javax.swing.JMenuItem menuCadastraSalario;
@@ -591,11 +670,13 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCielo;
     private javax.swing.JMenuItem menuComandaExt;
     private javax.swing.JMenuItem menuComandaInt;
+    private javax.swing.JMenuItem menuEnviaPedido;
     private javax.swing.JMenuItem menuFaturaEntrada;
     private javax.swing.JMenuItem menuFaturaSaida;
     private javax.swing.JMenuItem menuFaturaTotal;
     private javax.swing.JMenu menuFinanceiro;
     private javax.swing.JMenu menuFuncionarios;
+    private javax.swing.JMenuItem menuManuConcluidas;
     private javax.swing.JMenu menuManutencao;
     private javax.swing.JMenu menuPedidos;
     private javax.swing.JMenuItem menuProdutos;
@@ -608,6 +689,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuRelatorioInt;
     private javax.swing.JMenuItem menuRelatoriosFuncionarios;
     private javax.swing.JMenuItem menuVisualizaEntrada;
+    private javax.swing.JMenuItem menuVisualizaManutencao;
     private javax.swing.JMenuItem menuVisualizaPedidos;
     private javax.swing.JMenuItem menuVisualizaSaida;
     // End of variables declaration//GEN-END:variables

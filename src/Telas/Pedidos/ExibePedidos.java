@@ -7,7 +7,6 @@ package Telas.Pedidos;
 
 import BackEnd.Database;
 import BackEnd.Test;
-import static Telas.Pedidos.NovoPedido.total;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -16,8 +15,17 @@ import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
@@ -82,8 +90,9 @@ public class ExibePedidos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nome = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        buttonEfetuaPedido = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Visualizar Pedidos");
@@ -103,7 +112,7 @@ public class ExibePedidos extends javax.swing.JFrame {
         tabelaPedido.setGridColor(new java.awt.Color(255, 0, 0));
         jScrollPane1.setViewportView(tabelaPedido);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Visualizar Pedidos");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -115,10 +124,10 @@ public class ExibePedidos extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Efetuar Pedido");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonEfetuaPedido.setText("Efetuar Pedido");
+        buttonEfetuaPedido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                buttonEfetuaPedidoMouseClicked(evt);
             }
         });
 
@@ -129,18 +138,21 @@ public class ExibePedidos extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("Enviar por Email");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -149,9 +161,14 @@ public class ExibePedidos extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(25, Short.MAX_VALUE))))
+                                .addComponent(jButton3)
+                                .addGap(88, 88, 88)
+                                .addComponent(buttonEfetuaPedido))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(jLabel1)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,10 +181,11 @@ public class ExibePedidos extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(buttonEfetuaPedido)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
 
@@ -198,7 +216,7 @@ public class ExibePedidos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void buttonEfetuaPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEfetuaPedidoMouseClicked
         // TODO add your handling code here:
         int id = 0;
         boolean resp = false;
@@ -224,7 +242,68 @@ public class ExibePedidos extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Algo deu errado, verifique!");
         }
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_buttonEfetuaPedidoMouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        boolean deuCerto=false;
+        String pedido = "Pedido para entregar no Hotel Marin Château\nDúvidas (47) 3393-4841 / 3393-3131 / 9 9911-6698\n\n";
+        ResultSet rs = banco.buscaPedidos(nome.getText());
+       
+        try {
+            while(rs.next()){                
+                pedido = pedido+String.valueOf(rs.getInt("quantidade")) + " - " + rs.getString("descricao")+"\n";
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ExibePedidos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+          Properties props = new Properties();
+            /** Parâmetros de conexão com servidor Gmail */
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.socketFactory.port", "465");
+            props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.port", "465");
+
+            Session session = Session.getDefaultInstance(props,
+                        new javax.mail.Authenticator() {
+                             protected PasswordAuthentication getPasswordAuthentication()
+                             {
+                                   return new PasswordAuthentication("daniloctg2007@gmail.com", "Beagoodperson14");
+                             }
+                        });
+
+            /** Ativa Debug para sessão */
+            session.setDebug(true);
+
+            try {
+
+                  Message message = new MimeMessage(session);
+                  message.setFrom(new InternetAddress("daniloctg2007@gmail.com")); //Remetente
+
+                  Address[] toUser = InternetAddress //Destinatário(s)
+                             .parse("pedidos@supergirassol.com.br,administracao@marinchateau.com,reservas@marinchateau.com");  
+
+                  message.setRecipients(Message.RecipientType.TO, toUser);
+                  message.setSubject("Pedido Hotel Marin Château");//Assunto
+                  message.setText(pedido);
+                  /**Método para enviar a mensagem criada*/
+                  Transport.send(message);
+
+                  deuCerto=true;
+
+             } catch (MessagingException e) {
+                  deuCerto=false;
+                  throw new RuntimeException(e);                  
+            }
+            
+            if(deuCerto){
+                buttonEfetuaPedidoMouseClicked(null);
+            }else{
+                JOptionPane.showMessageDialog(null, "Algo deu errado, verifique.");
+            }
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -262,8 +341,9 @@ public class ExibePedidos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton buttonEfetuaPedido;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
