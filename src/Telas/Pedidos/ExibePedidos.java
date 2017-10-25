@@ -196,6 +196,7 @@ public class ExibePedidos extends javax.swing.JFrame {
         DefaultTableModel tabela;
         tabela = (DefaultTableModel) tabelaPedido.getModel();
         tabela.setNumRows(0);
+        
         ResultSet rs = banco.buscaPedidos(nome.getText());
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         DefaultTableModel model = (DefaultTableModel) tabelaPedido.getModel();

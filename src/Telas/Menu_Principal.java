@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Telas;
 
 import BackEnd.AplicaNimbusLookAndFeel;
@@ -14,6 +9,8 @@ import Telas.Cartao.Cartao_Cielo;
 import Telas.Cartao.Cartao_Rede;
 import Funcionarios.Cadastra;
 import Funcionarios.Lancamento;
+import Telas.Cartao.Cartao_Amex;
+import Telas.Financeiro.BuscaFicha;
 import Telas.Financeiro.Faturamento_Entrada;
 import Telas.Financeiro.Faturamento_Saida;
 import Telas.Financeiro.Faturamento_Total;
@@ -112,6 +109,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         menuFinanceiro = new javax.swing.JMenu();
         menuCadastraFicha = new javax.swing.JMenuItem();
         menuRelatorio = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         menuFaturaEntrada = new javax.swing.JMenuItem();
         menuFaturaSaida = new javax.swing.JMenuItem();
         menuFaturaTotal = new javax.swing.JMenuItem();
@@ -130,6 +128,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         menuCartao = new javax.swing.JMenu();
         menuRede = new javax.swing.JMenuItem();
         menuCielo = new javax.swing.JMenuItem();
+        menuAmex = new javax.swing.JMenuItem();
         menuFuncionarios = new javax.swing.JMenu();
         menuCadastraFuncionario = new javax.swing.JMenuItem();
         menuCadastraSalario = new javax.swing.JMenuItem();
@@ -180,6 +179,14 @@ public class Menu_Principal extends javax.swing.JFrame {
             }
         });
         menuFinanceiro.add(menuRelatorio);
+
+        jMenuItem4.setText("Visualiza Fichas");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        menuFinanceiro.add(jMenuItem4);
 
         menuFaturaEntrada.setText("Faturamento (Entrada)");
         menuFaturaEntrada.addActionListener(new java.awt.event.ActionListener() {
@@ -318,6 +325,14 @@ public class Menu_Principal extends javax.swing.JFrame {
             }
         });
         menuCartao.add(menuCielo);
+
+        menuAmex.setText("Amex");
+        menuAmex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAmexActionPerformed(evt);
+            }
+        });
+        menuCartao.add(menuAmex);
 
         jMenuBar1.add(menuCartao);
 
@@ -616,6 +631,20 @@ public class Menu_Principal extends javax.swing.JFrame {
         a.setVisible(true);
     }//GEN-LAST:event_menuManuConcluidasActionPerformed
 
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        BuscaFicha a = new BuscaFicha();
+        a.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void menuAmexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAmexActionPerformed
+        // TODO add your handling code here:
+        Cartao_Amex card = new Cartao_Amex();
+        card.setVisible(true);
+    }//GEN-LAST:event_menuAmexActionPerformed
+
+
     /**
      * @param args the command line arguments
      */
@@ -659,7 +688,9 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem menuAmex;
     private javax.swing.JMenuItem menuCadastraFicha;
     private javax.swing.JMenuItem menuCadastraFuncionario;
     private javax.swing.JMenuItem menuCadastraManutencao;

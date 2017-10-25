@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package BackEnd;
 
 import java.sql.Connection;
@@ -706,7 +702,7 @@ public class Database {
     }
 
     public ResultSet buscaManutençõesFeitas() {
-         ResultSet rs = null;
+        ResultSet rs = null;
         PreparedStatement pst = null;
         String stm = null;
         
@@ -721,6 +717,21 @@ public class Database {
         return rs;
     }
 
+    public ResultSet buscaFichas() {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+        
+        stm = "select * from financeiro_controle order by titular";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+    }
 }
 
 

@@ -24,15 +24,14 @@ import javax.swing.KeyStroke;
 
 /**
  *
- * @author amdemassh
+ * @author Administração
  */
-public class Cartao_Rede extends javax.swing.JFrame {
+public class Cartao_Amex extends javax.swing.JFrame {
 
     /**
-     * Creates new form Cartao_Visa
+     * Creates new form Cartao_Amex
      */
-
-    public Cartao_Rede() {
+    public Cartao_Amex() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -55,7 +54,7 @@ public class Cartao_Rede extends javax.swing.JFrame {
         String data = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         textData.setText(data);
     }
-
+    
     public boolean fechar() {
         this.dispose();
         return true;
@@ -70,44 +69,53 @@ public class Cartao_Rede extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
+        dataPagamento = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        textData = new javax.swing.JTextField();
         textValor = new javax.swing.JTextField();
-        comboCartao = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
         textValorAtualizado = new javax.swing.JTextField();
         buttonCalcula = new javax.swing.JButton();
         buttonSair = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        dataPagamento = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        textData = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cartão Rede");
+        setTitle("Cartão American Express");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("Data Pagamento");
+
+        dataPagamento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        dataPagamento.setForeground(new java.awt.Color(255, 0, 0));
+        dataPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataPagamentoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabel1.setText("Cartão Rede");
+        jLabel1.setText("Cartão Amex");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setText("Data");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Valor R$ ");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Tipo");
+        textData.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        textData.setForeground(new java.awt.Color(255, 0, 0));
+        textData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textDataActionPerformed(evt);
+            }
+        });
 
         textValor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         textValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textValorActionPerformed(evt);
-            }
-        });
-
-        comboCartao.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        comboCartao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Crédito", "Débito" }));
-        comboCartao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboCartaoActionPerformed(evt);
             }
         });
 
@@ -131,66 +139,44 @@ public class Cartao_Rede extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setText("Data Pagamento");
-
-        dataPagamento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        dataPagamento.setForeground(new java.awt.Color(255, 0, 0));
-        dataPagamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataPagamentoActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("Data");
-
-        textData.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        textData.setForeground(new java.awt.Color(255, 0, 0));
-        textData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textDataActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dataPagamento))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(textValorAtualizado))
-                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textValor)
-                            .addComponent(comboCartao, 0, 169, Short.MAX_VALUE)
-                            .addComponent(textData))))
-                .addContainerGap(53, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(99, 99, 99))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(buttonSair)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonCalcula)
-                        .addGap(27, 27, 27))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 61, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(99, 99, 99))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(buttonSair)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonCalcula))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel6))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textValor, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                                    .addComponent(textData)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(dataPagamento, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(textValorAtualizado))))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,10 +193,6 @@ public class Cartao_Rede extends javax.swing.JFrame {
                     .addComponent(textData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(comboCartao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(textValorAtualizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -219,43 +201,55 @@ public class Cartao_Rede extends javax.swing.JFrame {
                     .addComponent(dataPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonCalcula)
-                    .addComponent(buttonSair))
+                    .addComponent(buttonSair)
+                    .addComponent(buttonCalcula))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void dataPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataPagamentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataPagamentoActionPerformed
+
+    private void textDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDataActionPerformed
+        // TODO add your handling code here:
+        buttonCalculaMouseClicked(null);
+    }//GEN-LAST:event_textDataActionPerformed
+
+    private void textValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textValorActionPerformed
+        // TODO add your handling code here:
+        buttonCalculaMouseClicked(null);
+    }//GEN-LAST:event_textValorActionPerformed
+
     private void buttonCalculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCalculaMouseClicked
         // TODO add your handling code here:
         double aux = 0;
         DecimalFormat df = new DecimalFormat("####.##");
-        df.setRoundingMode(RoundingMode.HALF_UP);          
+        df.setRoundingMode(RoundingMode.HALF_UP);
 
         Date suaData;
         suaData = Date.valueOf(textData.getText());
         String auxData;
-        
 
-        if (String.valueOf(comboCartao.getSelectedItem()).equals("Crédito")) {
+        
             aux = converteValor(textValor.getText());
-            aux = aux - (aux * 0.0367);
+            aux = aux - (aux * 0.0320);
             textValorAtualizado.setText(String.valueOf(df.format(aux)));
             suaData.setDate(suaData.getDate() + 30);
-        } else {
-            aux = converteValor(textValor.getText());
-            aux = aux - (aux * 0.0257);
-            textValorAtualizado.setText(String.valueOf(df.format(aux)));
-            suaData.setDate(suaData.getDate() + 2);
-        }
+       
         auxData = String.valueOf(suaData);
 
         SimpleDateFormat sfd = new SimpleDateFormat("dd/MM/yyyy");
 
         dataPagamento.setText(sfd.format(suaData));
-
     }//GEN-LAST:event_buttonCalculaMouseClicked
+
+    private void buttonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSairMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_buttonSairMouseClicked
 
     public double converteValor(String aux) {
 
@@ -263,31 +257,6 @@ public class Cartao_Rede extends javax.swing.JFrame {
         aux = aux.replace(",", ".");
         return Double.parseDouble(aux);
     }
-
-    private void buttonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSairMouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_buttonSairMouseClicked
-
-    private void textValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textValorActionPerformed
-        // TODO add your handling code here:
-        buttonCalculaMouseClicked(null);
-    }//GEN-LAST:event_textValorActionPerformed
-
-    private void dataPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataPagamentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataPagamentoActionPerformed
-
-    private void comboCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCartaoActionPerformed
-        // TODO add your handling code here:
-        buttonCalculaMouseClicked(null);
-    }//GEN-LAST:event_comboCartaoActionPerformed
-
-    private void textDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDataActionPerformed
-        // TODO add your handling code here:
-        buttonCalculaMouseClicked(null);
-    }//GEN-LAST:event_textDataActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -305,21 +274,20 @@ public class Cartao_Rede extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cartao_Rede.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cartao_Amex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cartao_Rede.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cartao_Amex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cartao_Rede.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cartao_Amex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cartao_Rede.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cartao_Amex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cartao_Rede().setVisible(true);
+                new Cartao_Amex().setVisible(true);
             }
         });
     }
@@ -327,11 +295,9 @@ public class Cartao_Rede extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCalcula;
     private javax.swing.JButton buttonSair;
-    private javax.swing.JComboBox<String> comboCartao;
     private javax.swing.JTextField dataPagamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
