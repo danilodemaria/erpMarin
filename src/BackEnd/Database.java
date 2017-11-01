@@ -732,6 +732,22 @@ public class Database {
         }
         return rs;
     }
+
+    public ResultSet buscaFichaHospede(String id) {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+        
+        stm = "select * from financeiro_controle where id = "+id+"";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+    }
 }
 
 

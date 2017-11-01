@@ -22,6 +22,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -36,7 +37,7 @@ public class BuscaFicha extends javax.swing.JFrame {
      * Creates new form BuscaFicha
      */
     Database banco = new Database();
-    
+
     public BuscaFicha() {
         initComponents();
         this.setResizable(false);
@@ -53,12 +54,13 @@ public class BuscaFicha extends javax.swing.JFrame {
         URL url1 = this.getClass().getResource("/Imagens/02.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url1);
         this.setIconImage(iconeTitulo);
-        Color minhaCor = new Color(204,255,204);
+        Color minhaCor = new Color(204, 255, 204);
         this.getContentPane().setBackground(minhaCor);
-        atualizaTabela();        
+        atualizaTabela();
+        createKeybindings(tabelaBusca);
     }
-    
-    public void atualizaTabela(){
+
+    public void atualizaTabela() {
         ResultSet rs = banco.buscaFichas();
         SimpleDateFormat sfd = new SimpleDateFormat("dd/MM/yyyy");
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -71,13 +73,41 @@ public class BuscaFicha extends javax.swing.JFrame {
         tabelaBusca.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
         try {
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getString("id"),rs.getString("titular"),rs.getString("num_ficha"),sfd.format(rs.getDate("datain")), rs.getString("total")});
+                model.addRow(new Object[]{rs.getString("id"), rs.getString("titular"), rs.getString("num_ficha"), sfd.format(rs.getDate("datain")), rs.getString("total")});
             }
         } catch (SQLException ex) {
             Logger.getLogger(ExibePedidos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    private void tabela_IDMousePressed(java.awt.event.MouseEvent evt) throws SQLException {
+        int a = tabelaBusca.getSelectedRow();
+        ResultSet rs = null;
+        String id = (String) tabelaBusca.getValueAt(a, 0);
+        rs = banco.buscaFichaHospede(id);
+        ExibeFicha b = null;
+        try {
+            b = new ExibeFicha(rs);
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscaFicha.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        b.setVisible(true);
+    }
+
+    private void createKeybindings(JTable table) {
+        table.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Enter");
+        table.getActionMap().put("Enter", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    tabela_IDMousePressed(null);
+                } catch (SQLException ex) {
+                    Logger.getLogger(BuscaFicha.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
+
     public boolean fechar() {
         this.dispose();
         return true;
@@ -123,6 +153,11 @@ public class BuscaFicha extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabelaBusca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaBuscaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaBusca);
         if (tabelaBusca.getColumnModel().getColumnCount() > 0) {
             tabelaBusca.getColumnModel().getColumn(0).setPreferredWidth(10);
@@ -133,6 +168,11 @@ public class BuscaFicha extends javax.swing.JFrame {
         }
 
         buttonVisualiza.setText("Visualizar");
+        buttonVisualiza.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonVisualizaMouseClicked(evt);
+            }
+        });
 
         buttonSair.setText("Sair");
 
@@ -170,6 +210,47 @@ public class BuscaFicha extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tabelaBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaBuscaMouseClicked
+        // TODO add your handling code here:
+        ResultSet rs = null;
+        if (evt.getClickCount() == 2) {
+            int a = tabelaBusca.getSelectedRow();
+            String id = (String) tabelaBusca.getValueAt(a, 0);
+
+            id = String.valueOf(tabelaBusca.getValueAt(a, 0));
+
+            rs = banco.buscaFichaHospede(id);
+            ExibeFicha b = null;
+            try {
+                b = new ExibeFicha(rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(BuscaFicha.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            b.setVisible(true);
+
+        }
+
+    }//GEN-LAST:event_tabelaBuscaMouseClicked
+
+    private void buttonVisualizaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonVisualizaMouseClicked
+        // TODO add your handling code here:
+        ResultSet rs = null;
+        int linha = 0;
+        String id = "";
+        linha = tabelaBusca.getSelectedRow();
+
+        id = String.valueOf(tabelaBusca.getValueAt(linha, 0));
+
+        rs = banco.buscaFichaHospede(id);
+        ExibeFicha a = null;
+        try {
+            a = new ExibeFicha(rs);
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscaFicha.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        a.setVisible(true);
+    }//GEN-LAST:event_buttonVisualizaMouseClicked
 
     /**
      * @param args the command line arguments
