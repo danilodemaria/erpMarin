@@ -10,6 +10,7 @@ import Telas.Cartao.Cartao_Rede;
 import Funcionarios.Cadastra;
 import Funcionarios.Lancamento;
 import Telas.Cartao.Cartao_Amex;
+import Telas.Cartao.Cartoes_Booking;
 import Telas.Financeiro.BuscaFicha;
 import Telas.Financeiro.Faturamento_Entrada;
 import Telas.Financeiro.Faturamento_Saida;
@@ -129,6 +130,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         menuRede = new javax.swing.JMenuItem();
         menuCielo = new javax.swing.JMenuItem();
         menuAmex = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         menuFuncionarios = new javax.swing.JMenu();
         menuCadastraFuncionario = new javax.swing.JMenuItem();
         menuCadastraSalario = new javax.swing.JMenuItem();
@@ -136,7 +138,6 @@ public class Menu_Principal extends javax.swing.JFrame {
         menuPedidos = new javax.swing.JMenu();
         menuCadastraPedido = new javax.swing.JMenuItem();
         menuVisualizaPedidos = new javax.swing.JMenuItem();
-        menuEnviaPedido = new javax.swing.JMenuItem();
         menuManutencao = new javax.swing.JMenu();
         menuCadastraManutencao = new javax.swing.JMenuItem();
         menuVisualizaManutencao = new javax.swing.JMenuItem();
@@ -334,6 +335,14 @@ public class Menu_Principal extends javax.swing.JFrame {
         });
         menuCartao.add(menuAmex);
 
+        jMenuItem5.setText("Booking");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        menuCartao.add(jMenuItem5);
+
         jMenuBar1.add(menuCartao);
 
         menuFuncionarios.setText("Funcionários");
@@ -376,14 +385,6 @@ public class Menu_Principal extends javax.swing.JFrame {
             }
         });
         menuPedidos.add(menuVisualizaPedidos);
-
-        menuEnviaPedido.setText("Enviar pedido por Email");
-        menuEnviaPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuEnviaPedidoActionPerformed(evt);
-            }
-        });
-        menuPedidos.add(menuEnviaPedido);
 
         jMenuBar1.add(menuPedidos);
 
@@ -615,10 +616,6 @@ public class Menu_Principal extends javax.swing.JFrame {
         a.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void menuEnviaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEnviaPedidoActionPerformed
-
-    }//GEN-LAST:event_menuEnviaPedidoActionPerformed
-
     private void menuVisualizaManutencaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVisualizaManutencaoActionPerformed
         // TODO add your handling code here:
         ExibeManutencoes a = new ExibeManutencoes();
@@ -643,6 +640,12 @@ public class Menu_Principal extends javax.swing.JFrame {
         Cartao_Amex card = new Cartao_Amex();
         card.setVisible(true);
     }//GEN-LAST:event_menuAmexActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        Cartoes_Booking booking = new Cartoes_Booking();
+        booking.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
 
     /**
@@ -689,6 +692,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem menuAmex;
     private javax.swing.JMenuItem menuCadastraFicha;
@@ -701,7 +705,6 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCielo;
     private javax.swing.JMenuItem menuComandaExt;
     private javax.swing.JMenuItem menuComandaInt;
-    private javax.swing.JMenuItem menuEnviaPedido;
     private javax.swing.JMenuItem menuFaturaEntrada;
     private javax.swing.JMenuItem menuFaturaSaida;
     private javax.swing.JMenuItem menuFaturaTotal;

@@ -138,6 +138,15 @@ create table porcao(
 	data timestamp
 );	
 
+create table bookingCard(
+	id serial primary key,
+	titular varchar(100),
+	codReserva varchar(100),
+	numCard varchar(100),
+	validade varchar(100),
+	codSeg varchar(10)
+)
+
 ALTER TABLE pedido ADD FOREIGN KEY (id_fornecedor) REFERENCES fornecedor(id);
 ALTER TABLE lancamento ADD FOREIGN KEY (id_produto) REFERENCES produto(id);
 ALTER TABLE lancamentoInterno ADD FOREIGN KEY (id_produto) REFERENCES produto(id);

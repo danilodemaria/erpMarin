@@ -748,6 +748,25 @@ public class Database {
         }
         return rs;
     }
+
+    public boolean insereCardBooking(String titular, String id, String numCard, String validade, String cod) {
+        String stm = "INSERT INTO bookingcard (titular, codreserva, numcard, validade, codseg) VALUES (?,?,?,?,?)";
+        PreparedStatement pst;
+
+        Connection conn = Connect();
+        try {
+            pst = conn.prepareStatement(stm);
+            pst.setString(1, titular);
+            pst.setString(2, id);
+            pst.setString(3, numCard);
+            pst.setString(4, validade);
+            pst.setString(5, cod);            
+            pst.execute();
+            return true;
+        } catch (SQLException ex) {
+        }
+        return false;
+    }
 }
 
 
