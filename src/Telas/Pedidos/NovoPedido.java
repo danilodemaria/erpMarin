@@ -7,6 +7,7 @@ package Telas.Pedidos;
 
 import BackEnd.Database;
 import BackEnd.Test;
+import BackEnd.Upper;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -30,6 +31,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Administração
  */
+
 public class NovoPedido extends javax.swing.JFrame {
 
     /**
@@ -38,6 +40,7 @@ public class NovoPedido extends javax.swing.JFrame {
     
     public static int total=1;
     public static Database banco = new Database();
+    Upper up = new Upper();
     
     public NovoPedido() {
         initComponents();
@@ -61,6 +64,7 @@ public class NovoPedido extends javax.swing.JFrame {
         nome.requestFocus();
         Test saborAuto = new Test(nome,this);
         ((DefaultTableCellRenderer)tabelaPedido.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+        up.upperCase(produto);
     }
     
     public boolean fechar() {

@@ -7,11 +7,13 @@ package Telas.Financeiro;
 
 import BackEnd.Conta;
 import BackEnd.Database;
+import BackEnd.Upper;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.net.URL;
 import java.text.ParseException;
 import javax.swing.AbstractAction;
@@ -19,7 +21,9 @@ import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 import javax.swing.text.MaskFormatter;
 
 /**
@@ -31,7 +35,8 @@ public class Financeiro_Cadastrar_Ficha extends javax.swing.JFrame {
     MaskFormatter mascaraData;
     Conta financeiro = new Conta();
     Database bd = new Database();
-
+    double total = 0;
+    Upper up = new Upper();
     /**
      * Creates new form Financeiro_Cadastrar_Ficha
      */
@@ -53,7 +58,11 @@ public class Financeiro_Cadastrar_Ficha extends javax.swing.JFrame {
         this.setIconImage(iconeTitulo);
         Color minhaCor = new Color(204,255,204);
         this.getContentPane().setBackground(minhaCor);
+        up.upperCase(textTitular);
+        
     }
+
+    
 
     public boolean fechar() {
         this.dispose();
@@ -137,6 +146,11 @@ public class Financeiro_Cadastrar_Ficha extends javax.swing.JFrame {
         jLabel6.setText("Suíte");
 
         comboNumSuite.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" }));
+        comboNumSuite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboNumSuiteActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel7.setText("Diária R$");
@@ -161,6 +175,18 @@ public class Financeiro_Cadastrar_Ficha extends javax.swing.JFrame {
 
         comboCartaoTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Crédito", "Débito" }));
 
+        textTitular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textTitularActionPerformed(evt);
+            }
+        });
+
+        textNumFicha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNumFichaActionPerformed(evt);
+            }
+        });
+
         try{
             mascaraData = new MaskFormatter("##/##/####");
             mascaraData.setPlaceholderCharacter('_');
@@ -169,6 +195,11 @@ public class Financeiro_Cadastrar_Ficha extends javax.swing.JFrame {
 
         textDataIn  = new JFormattedTextField(mascaraData);
         textDataIn.setCaretPosition(0);
+        textDataIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textDataInActionPerformed(evt);
+            }
+        });
 
         try{
             mascaraData = new MaskFormatter("##/##/####");
@@ -178,6 +209,41 @@ public class Financeiro_Cadastrar_Ficha extends javax.swing.JFrame {
 
         textDataOut  = new JFormattedTextField(mascaraData);
         textDataOut.setCaretPosition(0);
+        textDataOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textDataOutActionPerformed(evt);
+            }
+        });
+
+        textDiaria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textDiariaActionPerformed(evt);
+            }
+        });
+
+        textQuiosque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textQuiosqueActionPerformed(evt);
+            }
+        });
+
+        textFrigobar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFrigobarActionPerformed(evt);
+            }
+        });
+
+        textAdiantamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textAdiantamentoActionPerformed(evt);
+            }
+        });
+
+        textDinheiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textDinheiroActionPerformed(evt);
+            }
+        });
 
         buttonSair.setText("Sair");
 
@@ -326,6 +392,59 @@ public class Financeiro_Cadastrar_Ficha extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Não cadastrado, verifique.");
         }
     }//GEN-LAST:event_buttonCadastrarMouseClicked
+
+    private void textTitularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTitularActionPerformed
+        // TODO add your handling code here:
+        textNumFicha.requestFocus();
+    }//GEN-LAST:event_textTitularActionPerformed
+
+    private void textNumFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNumFichaActionPerformed
+        // TODO add your handling code here:
+        textDataIn.requestFocus();
+    }//GEN-LAST:event_textNumFichaActionPerformed
+
+    private void textDataInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDataInActionPerformed
+        // TODO add your handling code here:
+        textDataOut.requestFocus();
+    }//GEN-LAST:event_textDataInActionPerformed
+
+    private void textDataOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDataOutActionPerformed
+        // TODO add your handling code here:
+        comboNumSuite.requestFocus();
+    }//GEN-LAST:event_textDataOutActionPerformed
+
+    private void textDiariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDiariaActionPerformed
+        // TODO add your handling code here:
+        textQuiosque.requestFocus();
+    }//GEN-LAST:event_textDiariaActionPerformed
+
+    private void textQuiosqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textQuiosqueActionPerformed
+        // TODO add your handling code here:
+        textFrigobar.requestFocus();
+    }//GEN-LAST:event_textQuiosqueActionPerformed
+
+    private void textFrigobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFrigobarActionPerformed
+        // TODO add your handling code here:
+        total=0;
+        total = Double.parseDouble(textDiaria.getText()) + Double.parseDouble(textFrigobar.getText()) + Double.parseDouble(textQuiosque.getText());
+        textTotal.setText(String.valueOf(total));
+        textAdiantamento.requestFocus();
+    }//GEN-LAST:event_textFrigobarActionPerformed
+
+    private void comboNumSuiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNumSuiteActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_comboNumSuiteActionPerformed
+
+    private void textAdiantamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAdiantamentoActionPerformed
+        // TODO add your handling code here:
+        textDinheiro.requestFocus();
+    }//GEN-LAST:event_textAdiantamentoActionPerformed
+
+    private void textDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDinheiroActionPerformed
+        // TODO add your handling code here:
+        textCartao.requestFocus();
+    }//GEN-LAST:event_textDinheiroActionPerformed
 
     /**
      * @param args the command line arguments

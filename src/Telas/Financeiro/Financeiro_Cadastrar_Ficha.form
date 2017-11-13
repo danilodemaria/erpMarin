@@ -232,6 +232,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboNumSuiteActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -308,28 +311,55 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="textTitular">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textTitularActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textNumFicha">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textNumFichaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textDataIn">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textDataInActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xa;mascaraData = new MaskFormatter(&quot;##/##/####&quot;); &#xa;            mascaraData.setPlaceholderCharacter(&apos;_&apos;);            &#xa;}&#xa;        catch(ParseException excp){} &#xa;         &#xa;         textDataIn  = new JFormattedTextField(mascaraData);&#xa;         textDataIn.setCaretPosition(0);"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="textDataOut">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textDataOutActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xa;mascaraData = new MaskFormatter(&quot;##/##/####&quot;); &#xa;            mascaraData.setPlaceholderCharacter(&apos;_&apos;);            &#xa;}&#xa;        catch(ParseException excp){} &#xa;         &#xa;         textDataOut  = new JFormattedTextField(mascaraData);&#xa;         textDataOut.setCaretPosition(0);"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="textDiaria">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textDiariaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textQuiosque">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textQuiosqueActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textFrigobar">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFrigobarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textAdiantamento">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textAdiantamentoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textDinheiro">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textDinheiroActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textTotal">
     </Component>

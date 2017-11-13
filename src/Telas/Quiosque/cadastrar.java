@@ -6,6 +6,7 @@
 package Telas.Quiosque;
 
 import BackEnd.Database;
+import BackEnd.Upper;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -27,6 +28,7 @@ public class cadastrar extends javax.swing.JFrame {
     /**
      * Creates new form cadastrar
      */
+    Upper up = new Upper();
     public cadastrar() {
        initComponents();
         this.setResizable(false);
@@ -45,12 +47,15 @@ public class cadastrar extends javax.swing.JFrame {
         this.setIconImage(iconeTitulo);
         Color minhaCor = new Color(204,255,204);
         this.getContentPane().setBackground(minhaCor);
+        up.upperCase(nome);
     }
     
      public boolean fechar() {
         this.dispose();
         return true;
     }
+     
+     
 
 
     /**

@@ -6,6 +6,7 @@
 package Telas.Manutencao;
 
 import BackEnd.Database;
+import BackEnd.Upper;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -35,6 +36,7 @@ public class CadastraManutencao extends javax.swing.JFrame {
     
     MaskFormatter mascaracpf;
     Database banco = new Database();
+    Upper up = new Upper();
     public CadastraManutencao() {
         initComponents();
         this.setResizable(false);
@@ -56,6 +58,7 @@ public class CadastraManutencao extends javax.swing.JFrame {
         this.getContentPane().setBackground(minhaCor);
         data.setText(new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()));
         descricao.requestFocus();
+        up.upperCase(descricao);
     }
     
     public boolean fechar() {
