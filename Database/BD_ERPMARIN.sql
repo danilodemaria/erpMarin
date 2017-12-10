@@ -9,32 +9,19 @@ CREATE DATABASE ERPMARIN_DB WITH OWNER ERPMARIN_USER;
 
 CREATE TABLE FINANCEIRO_CONTROLE(
 	
-id serial primary key,
-	
-titular varchar(100),
-	
-num_ficha integer,
-	
-dataIN timestamp,
-	
-dataOut timestamp,
-	
-num_suite integer,
-	
-diaria decimal(10,2),
-	
-quiosque decimal(10,2),
-	
-frigobar decimal(10,2),
-	
-total decimal(10,2),
-	
-cartao decimal(10,2),
-	
-dinheiro decimal(10,2),
-	
-adiantamento decimal(10,2),
-	
+id serial primary key,	
+titular varchar(100),	
+num_ficha integer,	
+dataIN timestamp,	
+dataOut timestamp,	
+num_suite integer,	
+diaria decimal(10,2),	
+quiosque decimal(10,2),	
+frigobar decimal(10,2),	
+total decimal(10,2),	
+cartao decimal(10,2),	
+dinheiro decimal(10,2),	
+adiantamento decimal(10,2),	
 tipoCartao integer
 );
 
@@ -85,26 +72,20 @@ create table faturamento_saida(
 
 create table funcionario (
 	id serial primary key,
-	nome varchar(100),
-	cpf varchar(100),
-	rg  varchar(100),
-	carteira varchar(100),
-	nacionalidade  varchar(100),
-	tel1  varchar(100),
-	tel2 varchar(100),
-	titulo varchar(100),
-	rua varchar(100),
-	numeroCasa varchar(100),
-	cidade varchar(100),
-	estado varchar(100),
-	nomeMae varchar(100),
-	nomePai varchar(100),
+	nome varchar(100),	
+	tel1  varchar(100),	
 	cargo varchar(100),
 	salario decimal(10,2),
 	extra decimal(10,2),
-	valorFolga decimal(10,2),
-	data_nascimento timestamp,
+	valorFolga decimal(10,2),	
 	data_admissao timestamp
+
+);
+
+create table folga_funcionario(
+	id serial primary key,
+	id_funcionario integer,
+	data timestamp
 
 );
 
@@ -150,4 +131,5 @@ create table bookingCard(
 ALTER TABLE pedido ADD FOREIGN KEY (id_fornecedor) REFERENCES fornecedor(id);
 ALTER TABLE lancamento ADD FOREIGN KEY (id_produto) REFERENCES produto(id);
 ALTER TABLE lancamentoInterno ADD FOREIGN KEY (id_produto) REFERENCES produto(id);
+ALTER TABLE folga_funcionario ADD FOREIGN KEY (id_funcionario) REFERENCES funcionario(id);
 TRUNCATE TABLE nome_tabela RESTART IDENTITY;

@@ -400,14 +400,8 @@ public class Database {
     }
     
     public boolean cadastraFuncionario(Funcionario x) {
-        String stm = "INSERT INTO FUNCIONARIO (nome, cpf,rg,carteira,nacionalidade,tel1,tel2,titulo,rua,numerocasa,"
-                +"cidade,estado,nomeMae,nomePai,cargo,salario,extra,valorFolga,data_nascimento,data_admissao) VALUES (?,?,?,?,?,?,"
-                + "?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        PreparedStatement pst;
-        String dataTemp[] = x.getDataNascimento().split("/");
-        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
-
-        Date date = Date.valueOf(dataTemp2);
+        String stm = "INSERT INTO FUNCIONARIO (nome,tel1,cargo,salario,extra,valorFolga,data_admissao) VALUES (?,?,?,?,?,?,?)";
+        PreparedStatement pst;  
         
         
         String dataTemp3[] = x.getDataEntrada().split("/");
@@ -419,26 +413,13 @@ public class Database {
 
         try {
             pst = conn.prepareStatement(stm);
-            pst.setString(1, x.getNome());
-            pst.setString(2, x.getCpf());
-            pst.setString(3, x.getRg());
-            pst.setString(4, x.getCarteira());
-            pst.setString(5, x.getNacionalidade());
-            pst.setString(6, x.getTelefone1());
-            pst.setString(7, x.getTelefone2());
-            pst.setString(8, x.getTituloEleitor());
-            pst.setString(9, x.getRua());
-            pst.setString(10, x.getNumeroCasa());
-            pst.setString(11, x.getCidade());
-            pst.setString(12, x.getEstado());
-            pst.setString(13, x.getNomeMae());
-            pst.setString(14, x.getNomePai());
-            pst.setString(15, x.getCargo());
-            pst.setDouble(16, x.getSalario());
-            pst.setDouble(17, x.getExtra());
-            pst.setDouble(18, x.getValorFolga());
-            pst.setDate(19, date);
-            pst.setDate(20, date1);            
+            pst.setString(1, x.getNome());            
+            pst.setString(2, x.getTelefone1());
+            pst.setString(3, x.getCargo());
+            pst.setDouble(4, x.getSalario());
+            pst.setDouble(5, x.getExtra());
+            pst.setDouble(6, x.getValorFolga());
+            pst.setDate(7, date1);            
             pst.execute();
             return true;
         } catch (SQLException ex) {
@@ -465,12 +446,29 @@ public class Database {
         return rs;
     }
      
+     public ResultSet buscaFuncionarioNome(String text) {
+        String stm = "select id,nome from funcionario where nome ilike '%"+text+"%'";
+        PreparedStatement pst;
+        ResultSet rs = null;
+        
+        Connection conn = Database.Connect();
+
+        try {
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro no banco de dados, contate o suporte técnico e mostre a mensagem a seguir. " + ex);
+        }
+        return rs;
+    }
+     
       public ArrayList<Fornecedor> buscaTodosFornecedores(String nome) {
         ArrayList<Fornecedor> saida = new ArrayList<>();
         String stm = "select * from fornecedor where nome ilike  '%"+nome+"%'";
         PreparedStatement pst;
         ResultSet rs = null;
-
+          System.out.println(stm);
         Connection conn = Database.Connect();
 
         try {
@@ -766,6 +764,44 @@ public class Database {
         } catch (SQLException ex) {
         }
         return false;
+    }
+
+    public boolean salvaFolga(String cod, String nome, String data) {
+        PreparedStatement pst;
+        String dataTemp[] = data.split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+
+        Date date = Date.valueOf(dataTemp2);
+        String stm = "INSERT INTO folga_funcionario (id_funcionario, data) values(?, ?)";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            pst.setInt(1, Integer.parseInt(cod));
+            pst.setDate(2, date);    
+            pst.execute();
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return false;
+        
+    }
+
+    public ResultSet buscaFolgas(String in, String out) {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+        
+        stm = "select a.id,a.nome,b.data from funcionario a inner join folga_funcionario b on (a.id = b.id_funcionario) and b.data between '"+in+"' and '"+out+"' order by a.nome";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
     }
 }
 

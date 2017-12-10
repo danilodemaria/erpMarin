@@ -248,8 +248,19 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuRelatoriosFuncionarios">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Relat&#xf3;rios"/>
+                <Property name="text" type="java.lang.String" value="Cadastrar Folga"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuRelatoriosFuncionariosActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Exibir Folgas"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

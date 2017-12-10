@@ -8,6 +8,8 @@ import Telas.Financeiro.Financeiro_Cadastrar_Ficha;
 import Telas.Cartao.Cartao_Cielo;
 import Telas.Cartao.Cartao_Rede;
 import Funcionarios.Cadastra;
+import Funcionarios.CadastraFolga;
+import Funcionarios.ExibeFolgas;
 import Funcionarios.Lancamento;
 import Telas.Cartao.Cartao_Amex;
 import Telas.Cartao.Cartoes_Booking;
@@ -135,6 +137,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         menuCadastraFuncionario = new javax.swing.JMenuItem();
         menuCadastraSalario = new javax.swing.JMenuItem();
         menuRelatoriosFuncionarios = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         menuPedidos = new javax.swing.JMenu();
         menuCadastraPedido = new javax.swing.JMenuItem();
         menuVisualizaPedidos = new javax.swing.JMenuItem();
@@ -363,8 +366,21 @@ public class Menu_Principal extends javax.swing.JFrame {
         });
         menuFuncionarios.add(menuCadastraSalario);
 
-        menuRelatoriosFuncionarios.setText("Relatórios");
+        menuRelatoriosFuncionarios.setText("Cadastrar Folga");
+        menuRelatoriosFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRelatoriosFuncionariosActionPerformed(evt);
+            }
+        });
         menuFuncionarios.add(menuRelatoriosFuncionarios);
+
+        jMenuItem6.setText("Exibir Folgas");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        menuFuncionarios.add(jMenuItem6);
 
         jMenuBar1.add(menuFuncionarios);
 
@@ -647,6 +663,18 @@ public class Menu_Principal extends javax.swing.JFrame {
         booking.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void menuRelatoriosFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatoriosFuncionariosActionPerformed
+        // TODO add your handling code here:
+        CadastraFolga folga = new CadastraFolga();
+        folga.setVisible(true);
+    }//GEN-LAST:event_menuRelatoriosFuncionariosActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        ExibeFolgas a = new ExibeFolgas();
+        a.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -693,6 +721,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem menuAmex;
     private javax.swing.JMenuItem menuCadastraFicha;

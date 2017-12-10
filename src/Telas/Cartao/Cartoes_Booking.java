@@ -6,17 +6,16 @@
 package Telas.Cartao;
 
 import BackEnd.Database;
+import BackEnd.Upper;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.net.URL;
-import java.text.ParseException;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.text.MaskFormatter;
@@ -33,10 +32,11 @@ public class Cartoes_Booking extends javax.swing.JFrame {
     
     MaskFormatter mascaraData;
     Database conexao = new Database();
+    Upper a = new Upper();
     public Cartoes_Booking() {
         initComponents();
-        this.setResizable(false);
         this.setLocationRelativeTo(null);
+        //this.setResizable(false);
         KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
         Action escapeAction = new AbstractAction() {
             @Override
@@ -52,6 +52,8 @@ public class Cartoes_Booking extends javax.swing.JFrame {
         this.setIconImage(iconeTitulo);
         Color minhaCor = new Color(204, 255, 204);
         this.getContentPane().setBackground(minhaCor);
+        a.upperCase(titular);
+        
     }
     
     public boolean fechar() {
@@ -68,56 +70,22 @@ public class Cartoes_Booking extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        cod = new javax.swing.JTextField();
+        validade = new javax.swing.JTextField();
+        titular = new javax.swing.JTextField();
+        numCard = new javax.swing.JTextField();
+        id = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        titular = new javax.swing.JTextField();
-        id = new javax.swing.JTextField();
-        numCard = new javax.swing.JTextField();
-        validade = new javax.swing.JTextField();
-        cod = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Cartões Booking");
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Cartões Booking");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 21, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Titular");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 76, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("ID Reserva");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 108, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setText("Número Cartão");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 140, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setText("Validade");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 172, -1, -1));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("Código de Segurança");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 204, -1, -1));
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Sair");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 253, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Salvar");
@@ -126,10 +94,30 @@ public class Cartoes_Booking extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(441, 253, -1, -1));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("Sair");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setText("Código de Segurança");
+
+        cod.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        validade.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         titular.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(titular, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 73, 345, -1));
+        titular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                titularActionPerformed(evt);
+            }
+        });
+
+        numCard.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         id.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         id.addActionListener(new java.awt.event.ActionListener() {
@@ -137,16 +125,90 @@ public class Cartoes_Booking extends javax.swing.JFrame {
                 idActionPerformed(evt);
             }
         });
-        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 105, 345, -1));
 
-        numCard.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(numCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 137, 345, -1));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("ID Reserva");
 
-        validade.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(validade, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 169, 120, -1));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setText("Número Cartão");
 
-        cod.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(cod, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 201, 120, -1));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Titular");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("Validade");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Cartões Booking");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(jLabel1))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel3)
+                .addGap(74, 74, 74)
+                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel4)
+                .addGap(48, 48, 48)
+                .addComponent(numCard, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel2)
+                .addGap(101, 101, 101)
+                .addComponent(titular, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel5)
+                .addGap(89, 89, 89)
+                .addComponent(validade, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel6)
+                .addGap(10, 10, 10)
+                .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jButton1)
+                .addGap(351, 351, 351)
+                .addComponent(jButton2))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(numCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(titular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(validade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -155,10 +217,9 @@ public class Cartoes_Booking extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void titularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titularActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_titularActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
@@ -174,6 +235,11 @@ public class Cartoes_Booking extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Não foi inserido, verifique as informações digitadas.");
         }
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -223,8 +289,6 @@ public class Cartoes_Booking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField numCard;
-    private javax.swing.JTextField textValor;
-    private javax.swing.JTextField textValor1;
     private javax.swing.JTextField titular;
     private javax.swing.JTextField validade;
     // End of variables declaration//GEN-END:variables
