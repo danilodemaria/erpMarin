@@ -74,6 +74,7 @@ public class relatorio extends javax.swing.JFrame {
         this.setIconImage(iconeTitulo);
         Color minhaCor = new Color(204,255,204);
         this.getContentPane().setBackground(minhaCor);
+        dataInicio.setCaretPosition(0);
     }
 
     public boolean fechar() {
@@ -239,6 +240,13 @@ public class relatorio extends javax.swing.JFrame {
     private void buscarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarButtonMouseClicked
         Database a = new Database();
         ResultSet rs = null;
+        id.clear();
+        nome.clear();
+        quantidade.clear();
+        valor_total.clear();
+        DefaultTableModel tabela1;
+        tabela1 = (DefaultTableModel) tabela_ID.getModel();
+        tabela1.setNumRows(0);
         DecimalFormat formatoDois2 = new DecimalFormat("R$ ##,###,###,###,##0.00", new DecimalFormatSymbols (new Locale("pt","BR")));
         formatoDois2.setMinimumFractionDigits(2);
         formatoDois2.setParseBigDecimal(true);
@@ -286,6 +294,7 @@ public class relatorio extends javax.swing.JFrame {
     private void dataInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataInicioActionPerformed
         // TODO add your handling code here:
         dataFinal.requestFocus();
+        dataFinal.setCaretPosition(0);
     }//GEN-LAST:event_dataInicioActionPerformed
 
     private void dataFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataFinalActionPerformed

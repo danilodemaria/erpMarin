@@ -41,7 +41,7 @@ public class lancamento extends javax.swing.JFrame {
 
     public lancamento() {
         initComponents();
-        qtd.requestFocus();
+        data.requestFocus();        
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         data.setText(new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()));
@@ -59,6 +59,7 @@ public class lancamento extends javax.swing.JFrame {
         this.setIconImage(iconeTitulo);
         Color minhaCor = new Color(204,255,204);
         this.getContentPane().setBackground(minhaCor);
+        data.setCaretPosition(0);
 
     }
 
@@ -175,7 +176,7 @@ public class lancamento extends javax.swing.JFrame {
                         .addComponent(qtd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                         .addComponent(codigo, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(valor_total, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)

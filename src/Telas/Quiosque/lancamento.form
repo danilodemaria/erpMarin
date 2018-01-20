@@ -46,7 +46,7 @@
                       <Component id="codigo" alignment="0" max="32767" attributes="0"/>
                       <Component id="valor_total" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="data" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                  <Component id="data" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="25" max="32767" attributes="0"/>
           </Group>

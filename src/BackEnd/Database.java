@@ -793,7 +793,7 @@ public class Database {
         PreparedStatement pst = null;
         String stm = null;
         
-        stm = "select a.id,a.nome,b.data from funcionario a inner join folga_funcionario b on (a.id = b.id_funcionario) and b.data between '"+in+"' and '"+out+"' order by a.nome";
+        stm = "select a.id,a.nome,b.data from funcionario a inner join folga_funcionario b on (a.id = b.id_funcionario) and b.data between '"+in+"' and '"+out+"' order by a.nome,b.data";
         try {
             Connection conn = Database.Connect();
             pst = conn.prepareStatement(stm);

@@ -188,7 +188,6 @@ public class Faturamento_Saida extends javax.swing.JFrame {
         String aux = valor.getText();
         aux = aux.replace(".", "");
         aux = aux.replace(",", ".");
-        System.out.println(aux);
         if(a.insereFaturamentoSaida(aux,data.getText())){
             JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
             valor.setText(null);

@@ -12,6 +12,7 @@ import Funcionarios.CadastraFolga;
 import Funcionarios.ExibeFolgas;
 import Funcionarios.Lancamento;
 import Telas.Cartao.Cartao_Amex;
+import Telas.Cartao.Cartao_Cielo_Parcelado;
 import Telas.Cartao.Cartoes_Booking;
 import Telas.Financeiro.BuscaFicha;
 import Telas.Financeiro.Faturamento_Entrada;
@@ -133,6 +134,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         menuCielo = new javax.swing.JMenuItem();
         menuAmex = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         menuFuncionarios = new javax.swing.JMenu();
         menuCadastraFuncionario = new javax.swing.JMenuItem();
         menuCadastraSalario = new javax.swing.JMenuItem();
@@ -155,7 +157,6 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         jMenuItem11.setText("jMenuItem11");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hotel Marin Château - V.1.0");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo.jpg"))); // NOI18N
@@ -345,6 +346,14 @@ public class Menu_Principal extends javax.swing.JFrame {
             }
         });
         menuCartao.add(jMenuItem5);
+
+        jMenuItem7.setText("Cielo Parcelado");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        menuCartao.add(jMenuItem7);
 
         jMenuBar1.add(menuCartao);
 
@@ -675,6 +684,12 @@ public class Menu_Principal extends javax.swing.JFrame {
         a.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        Cartao_Cielo_Parcelado a = new Cartao_Cielo_Parcelado();
+        a.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -722,6 +737,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem menuAmex;
     private javax.swing.JMenuItem menuCadastraFicha;
