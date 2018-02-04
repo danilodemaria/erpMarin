@@ -271,6 +271,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         });
         menuQuiosque.add(menuProdutos);
 
+        menuRelatorioGeralExt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
         menuRelatorioGeralExt.setText("Relatório Geral (Ext)");
         menuRelatorioGeralExt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,6 +280,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         });
         menuQuiosque.add(menuRelatorioGeralExt);
 
+        menuRelatorioGeralInt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
         menuRelatorioGeralInt.setText("Relatório Geral (Int)");
         menuRelatorioGeralInt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

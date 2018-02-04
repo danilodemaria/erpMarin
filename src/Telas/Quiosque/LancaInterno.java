@@ -37,8 +37,8 @@ public class LancaInterno extends javax.swing.JFrame {
     MaskFormatter mascaradata;
     
     public LancaInterno() {
-        initComponents();
-        qtd.requestFocus();
+        initComponents();               
+        data.requestFocus();        
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         data.setText(new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()));
@@ -56,6 +56,7 @@ public class LancaInterno extends javax.swing.JFrame {
         this.setIconImage(iconeTitulo);
         Color minhaCor = new Color(204,255,204);
         this.getContentPane().setBackground(minhaCor);
+        data.setCaretPosition(0);
     }
     
     public boolean fechar() {

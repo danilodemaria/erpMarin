@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.sql.Date;
@@ -50,15 +51,38 @@ public class Cartao_Cielo extends javax.swing.JFrame {
         this.setIconImage(iconeTitulo);
         Color minhaCor = new Color(204, 255, 204);
         this.getContentPane().setBackground(minhaCor);
+
         textValor.addKeyListener(new ValorMasc(textValor, 7, 2));
         String data = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         textData.setText(data);
+        textValor.addKeyListener(listener);
+
     }
 
     public boolean fechar() {
         this.dispose();
         return true;
     }
+
+    KeyListener listener = new KeyListener() {
+
+        @Override
+        public void keyPressed(KeyEvent event) {            
+        }
+
+        @Override
+        public void keyReleased(KeyEvent event) {
+            if (event.getKeyCode() == 17) {
+                textValor.setText(null);
+            } else {
+                buttonCalculaMouseClicked(null);
+            }
+        }
+
+        @Override
+        public void keyTyped(KeyEvent event) {            
+        }
+    };
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,6 +117,17 @@ public class Cartao_Cielo extends javax.swing.JFrame {
         textValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textValorActionPerformed(evt);
+            }
+        });
+        textValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textValorKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textValorKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textValorKeyTyped(evt);
             }
         });
 
@@ -226,7 +261,7 @@ public class Cartao_Cielo extends javax.swing.JFrame {
 
     private void buttonCalculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCalculaMouseClicked
         // TODO add your handling code here:
-        double aux = 0;
+        double aux;
         DecimalFormat df = new DecimalFormat("####.##");
         df.setRoundingMode(RoundingMode.HALF_UP);
         Date suaData;
@@ -270,13 +305,27 @@ public class Cartao_Cielo extends javax.swing.JFrame {
 
     private void comboCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCartaoActionPerformed
         // TODO add your handling code here:
-        buttonCalculaMouseClicked(null);        
+        buttonCalculaMouseClicked(null);
     }//GEN-LAST:event_comboCartaoActionPerformed
 
     private void textDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDataActionPerformed
         // TODO add your handling code here:
         buttonCalculaMouseClicked(null);
     }//GEN-LAST:event_textDataActionPerformed
+
+    private void textValorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textValorKeyPressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_textValorKeyPressed
+
+    private void textValorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textValorKeyReleased
+        // TODO add your handling code here:        
+    }//GEN-LAST:event_textValorKeyReleased
+
+    private void textValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textValorKeyTyped
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_textValorKeyTyped
 
     /**
      * @param args the command line arguments

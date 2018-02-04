@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.sql.Date;
@@ -53,12 +54,33 @@ public class Cartao_Amex extends javax.swing.JFrame {
         textValor.addKeyListener(new ValorMasc(textValor, 7, 2));
         String data = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         textData.setText(data);
+        textValor.addKeyListener(listener);
     }
     
     public boolean fechar() {
         this.dispose();
         return true;
     }
+    
+    KeyListener listener = new KeyListener() {
+
+        @Override
+        public void keyPressed(KeyEvent event) {            
+        }
+
+        @Override
+        public void keyReleased(KeyEvent event) {
+            if (event.getKeyCode() == 17) {
+                textValor.setText(null);
+            } else {
+                buttonCalculaMouseClicked(null);
+            }
+        }
+
+        @Override
+        public void keyTyped(KeyEvent event) {            
+        }
+    };
 
     /**
      * This method is called from within the constructor to initialize the form.
