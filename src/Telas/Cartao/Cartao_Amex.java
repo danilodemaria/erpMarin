@@ -36,6 +36,8 @@ public class Cartao_Amex extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        radioCielo.setSelected(true);
+        textValor.requestFocus();
         KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
         Action escapeAction = new AbstractAction() {
             @Override
@@ -91,6 +93,7 @@ public class Cartao_Amex extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel5 = new javax.swing.JLabel();
         dataPagamento = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -102,6 +105,8 @@ public class Cartao_Amex extends javax.swing.JFrame {
         textValorAtualizado = new javax.swing.JTextField();
         buttonCalcula = new javax.swing.JButton();
         buttonSair = new javax.swing.JButton();
+        radioCielo = new javax.swing.JRadioButton();
+        radioRede = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cartão American Express");
@@ -161,25 +166,39 @@ public class Cartao_Amex extends javax.swing.JFrame {
             }
         });
 
+        radioCielo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        radioCielo.setText("Cielo");
+        radioCielo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioCieloMouseClicked(evt);
+            }
+        });
+
+        radioRede.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        radioRede.setText("Rede");
+        radioRede.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioRedeMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 69, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(0, 107, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(buttonSair)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonCalcula))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 61, Short.MAX_VALUE)
-                                .addComponent(jLabel1)
-                                .addGap(99, 99, 99))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(buttonSair)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buttonCalcula))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,25 +206,33 @@ public class Cartao_Amex extends javax.swing.JFrame {
                                     .addComponent(jLabel6))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(textValor, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                                    .addComponent(textData)))
+                                    .addComponent(textValor)
+                                    .addComponent(textData, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel5)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(dataPagamento, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                                    .addComponent(dataPagamento))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel4)
                                     .addGap(18, 18, 18)
-                                    .addComponent(textValorAtualizado))))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                                    .addComponent(textValorAtualizado, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(radioCielo)
+                                .addGap(68, 68, 68)
+                                .addComponent(radioRede)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioCielo)
+                    .addComponent(radioRede))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(textValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -225,7 +252,7 @@ public class Cartao_Amex extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSair)
                     .addComponent(buttonCalcula))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -255,23 +282,58 @@ public class Cartao_Amex extends javax.swing.JFrame {
         suaData = Date.valueOf(textData.getText());
         String auxData;
 
-        
+        if (radioCielo.isSelected()) {
+
             aux = converteValor(textValor.getText());
-            aux = aux - (aux * 0.0320);
+            aux = aux - (aux * 0.0325);
             textValorAtualizado.setText(String.valueOf(df.format(aux)));
             suaData.setDate(suaData.getDate() + 30);
-       
-        auxData = String.valueOf(suaData);
 
-        SimpleDateFormat sfd = new SimpleDateFormat("dd/MM/yyyy");
+            auxData = String.valueOf(suaData);
 
-        dataPagamento.setText(sfd.format(suaData));
+            SimpleDateFormat sfd = new SimpleDateFormat("dd/MM/yyyy");
+
+            dataPagamento.setText(sfd.format(suaData));
+        } else {
+            aux = converteValor(textValor.getText());
+            aux = aux - (aux * 0.0367);
+            textValorAtualizado.setText(String.valueOf(df.format(aux)));
+            suaData.setDate(suaData.getDate() + 30);
+
+            auxData = String.valueOf(suaData);
+
+            SimpleDateFormat sfd = new SimpleDateFormat("dd/MM/yyyy");
+
+            dataPagamento.setText(sfd.format(suaData));
+        }
     }//GEN-LAST:event_buttonCalculaMouseClicked
 
     private void buttonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSairMouseClicked
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_buttonSairMouseClicked
+
+    private void radioCieloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioCieloMouseClicked
+        // TODO add your handling code here:
+        if(radioCielo.isSelected()){
+            radioCielo.setSelected(true);
+            radioRede.setSelected(false);
+            buttonCalculaMouseClicked(null);
+        }else{
+            radioCielo.setSelected(false);
+        }
+    }//GEN-LAST:event_radioCieloMouseClicked
+
+    private void radioRedeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioRedeMouseClicked
+        // TODO add your handling code here:
+        if(radioRede.isSelected()){
+            radioRede.setSelected(true);
+            radioCielo.setSelected(false);
+            buttonCalculaMouseClicked(null);
+        }else{
+            radioRede.setSelected(false);
+        }
+    }//GEN-LAST:event_radioRedeMouseClicked
 
     public double converteValor(String aux) {
 
@@ -316,6 +378,7 @@ public class Cartao_Amex extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCalcula;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton buttonSair;
     private javax.swing.JTextField dataPagamento;
     private javax.swing.JLabel jLabel1;
@@ -323,6 +386,8 @@ public class Cartao_Amex extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JRadioButton radioCielo;
+    private javax.swing.JRadioButton radioRede;
     private javax.swing.JTextField textData;
     private javax.swing.JTextField textValor;
     private javax.swing.JTextField textValorAtualizado;

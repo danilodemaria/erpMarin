@@ -284,7 +284,7 @@ public class ExibePedidos extends javax.swing.JFrame {
                   message.setFrom(new InternetAddress("daniloctg2007@gmail.com")); //Remetente
 
                   Address[] toUser = InternetAddress //Destinatário(s)
-                             .parse("pedidos@supergirassol.com.br,administracao@marinchateau.com,reservas@marinchateau.com");  
+                             .parse("administracao@marinchateau.com,reservas@marinchateau.com");  
 
                   message.setRecipients(Message.RecipientType.TO, toUser);
                   message.setSubject("Pedido Hotel Marin Château");//Assunto
