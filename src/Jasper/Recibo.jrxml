@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-03-03T17:07:07 -->
+<!-- 2018-04-30T10:10:24 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Recibo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="557fc423-210a-40e8-b32e-af3043baa8e1">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<parameter name="codigo" class="java.lang.Integer"/>
 	<parameter name="nome" class="java.lang.String"/>
-	<parameter name="mesReferencia" class="java.lang.String">
-		<parameterDescription><![CDATA[]]></parameterDescription>
-	</parameter>
-	<parameter name="salarioFiscal" class="java.lang.String"/>
-	<parameter name="salarioExtra" class="java.lang.String"/>
-	<parameter name="numFolgas" class="java.lang.String"/>
-	<parameter name="valorPorFolga" class="java.lang.String"/>
-	<parameter name="totalFolgas" class="java.lang.String"/>
-	<parameter name="consumo" class="java.lang.String"/>
-	<parameter name="totalReceber" class="java.lang.String"/>
+	<parameter name="valor" class="java.lang.String"/>
+	<parameter name="cargo" class="java.lang.String"/>
+	<parameter name="obs" class="java.lang.String"/>
+	<parameter name="data" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -22,166 +15,133 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="109" splitType="Stretch">
-			<image>
-				<reportElement x="0" y="0" width="550" height="80" uuid="d5074dac-cbab-469d-891f-b0a2b603d431"/>
-				<imageExpression><![CDATA["C:/Users/Administração/Funcionarios/Guarda-sol.jpg"]]></imageExpression>
-			</image>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="325">
+		<band height="115" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="320" height="30" uuid="346dd269-4ab4-4909-b0c3-af80761c7d19"/>
+				<reportElement x="120" y="30" width="320" height="30" uuid="369ad92f-2f65-404e-a686-5f28aecd18c0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Recebi de Hotel Marin Château os seguintes valores:]]></text>
+				<text><![CDATA[Hotel Marin Château]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="30" width="60" height="20" uuid="b7ff9fc8-3754-4d79-8795-6185af43b015"/>
+				<reportElement x="120" y="-1" width="320" height="30" uuid="346dd269-4ab4-4909-b0c3-af80761c7d19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Marin Château Empreendimentos Turísticos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="117" y="80" width="320" height="30" uuid="c9489fa5-588e-42c2-946c-e51497b9f322"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recibo de Trabalho Extra]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="330">
+			<staticText>
+				<reportElement x="10" y="40" width="440" height="30" uuid="fb770108-eaa0-4fe0-8b46-5471bfb5f50d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[referente aos dias trabalhados que estão na descrição.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="75" width="110" height="30" uuid="3fc9dec1-44e4-445b-880d-18030a20ce4e">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Código: ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="200" y="30" width="60" height="20" uuid="fb770108-eaa0-4fe0-8b46-5471bfb5f50d"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Nome: ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="50" width="120" height="20" uuid="3fc9dec1-44e4-445b-880d-18030a20ce4e"/>
-				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Mês de Referência:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="70" width="120" height="20" uuid="8ea91459-7e1b-441f-8f18-01c2782b61f1"/>
-				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Salário Fiscal: ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="90" width="120" height="20" uuid="e1c33973-63f2-430c-9d1f-15f6b06ba6ee"/>
-				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Salário Extra: ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="110" width="120" height="20" uuid="782b48da-a546-42b9-9278-854048b7ae9c"/>
-				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Número de Folgas: ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="130" width="120" height="20" uuid="4b103644-a373-4eb5-bc7a-3b3ff4abc761"/>
-				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Valor por Folga: ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="150" width="120" height="20" uuid="612796a6-d7f8-42ba-9b89-444aa600fecf"/>
-				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Valor total Folgas: ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="170" width="120" height="20" uuid="ef4e7ddb-508c-4c8d-b0ca-a38b3bb0c405"/>
-				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Consumo: ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="190" width="130" height="20" uuid="c8b9f91d-38de-4dd8-8c5f-dacb92cc1d96"/>
-				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Valor Total a Receber: ]]></text>
+				<text><![CDATA[Nome:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="60" y="30" width="140" height="20" uuid="69fb4a68-93d6-4df2-a33e-c098b09d8ac6"/>
+				<reportElement x="290" y="10" width="70" height="30" uuid="4c8a24e8-63a7-451b-a7d0-3ffbe9174dea"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{codigo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{valor}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="10" y="10" width="280" height="30" uuid="2ce98953-7908-4421-848a-7857a7b7a81a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recebi de Hotel Marin Château, a quantia de R$ ]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="260" y="30" width="290" height="20" uuid="4c8a24e8-63a7-451b-a7d0-3ffbe9174dea"/>
+				<reportElement x="140" y="75" width="356" height="30" uuid="4f411542-b900-4558-a038-63df9a8caa59"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="105" width="110" height="30" uuid="c64acbe8-f692-490f-bd98-d38a47a6afc4">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cargo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="105" width="356" height="30" uuid="b10d1b26-4088-471f-a0eb-4e56f069aefc"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cargo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="135" width="110" height="30" uuid="de48810a-aaa7-4972-8696-1d67a164c3cf">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dias Trabalhados:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="135" width="356" height="30" uuid="14226dd5-9b7d-4180-abbd-8a370b12d3e6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{obs}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="249" y="255" width="70" height="30" uuid="fef4c077-5640-400d-a87f-d1eb933c3a15">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bombinhas, ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="330" y="255" width="160" height="30" uuid="7b689444-4f1e-4baa-acd3-3457e362963b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{data}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="81" y="209" width="298" height="1" uuid="4ee3b084-4bd7-40e7-aad9-39e60bb3921e"/>
+			</line>
+			<textField>
+				<reportElement x="81" y="220" width="298" height="30" uuid="d7bbd7c7-1e6b-4278-9712-a29fc5733426"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nome}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="130" y="50" width="140" height="20" uuid="48fde395-7801-4990-9033-de2993cb7be5"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{mesReferencia}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="130" y="70" width="140" height="20" uuid="765eee7b-1266-4507-aba3-c8fd4e34874d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{salarioFiscal}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="130" y="90" width="140" height="20" uuid="990ff074-34de-49f3-990a-22aa0dec2fd2"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{salarioExtra}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="130" y="110" width="140" height="20" uuid="6c439448-6887-40c0-b699-78c5ef05dfa9"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{numFolgas}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="130" y="130" width="140" height="20" uuid="cb7a8449-8e4f-41b0-879b-fb9b40d40ca9"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{valorPorFolga}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="130" y="150" width="140" height="20" uuid="228f261a-f174-4fbf-a185-abbf0cfe88a0"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{totalFolgas}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="130" y="170" width="140" height="20" forecolor="#F50B07" uuid="db299c9f-ac91-4482-87fb-9cd5c1142b9c"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{consumo}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="130" y="190" width="140" height="20" forecolor="#2013D1" uuid="0bd4e2c9-f522-4cb8-851d-85b12f5d12ab"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{totalReceber}]]></textFieldExpression>
-			</textField>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="264" splitType="Stretch"/>
+		<band height="265" splitType="Stretch"/>
 	</detail>
 	<summary>
 		<band height="42" splitType="Stretch"/>

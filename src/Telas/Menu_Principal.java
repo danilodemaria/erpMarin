@@ -10,6 +10,7 @@ import Telas.Cartao.Cartao_Rede;
 import Funcionarios.Cadastra;
 import Funcionarios.CadastraFolga;
 import Funcionarios.ExibeFolgas;
+import Funcionarios.Extras;
 import Funcionarios.Lancamento;
 import Telas.Cartao.Cartao_Amex;
 import Telas.Cartao.Cartao_Cielo_Parcelado;
@@ -140,6 +141,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         menuCadastraSalario = new javax.swing.JMenuItem();
         menuRelatoriosFuncionarios = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         menuPedidos = new javax.swing.JMenu();
         menuCadastraPedido = new javax.swing.JMenuItem();
         menuVisualizaPedidos = new javax.swing.JMenuItem();
@@ -392,6 +394,14 @@ public class Menu_Principal extends javax.swing.JFrame {
             }
         });
         menuFuncionarios.add(jMenuItem6);
+
+        jMenuItem8.setText("Extras");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        menuFuncionarios.add(jMenuItem8);
 
         jMenuBar1.add(menuFuncionarios);
 
@@ -692,6 +702,12 @@ public class Menu_Principal extends javax.swing.JFrame {
         a.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        Extras a = new Extras();
+        a.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -740,6 +756,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem menuAmex;
     private javax.swing.JMenuItem menuCadastraFicha;

@@ -803,6 +803,32 @@ public class Database {
         }
         return rs;
     }
+    
+    public boolean cadastraExtra (String nome, String valor, String data, String cargo, String obs){
+        PreparedStatement pst;
+        String dataTemp[] = data.split("/");
+        String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
+
+        valor = valor.replace(".", "");
+        valor = valor.replace(",",".");
+        Date date = Date.valueOf(dataTemp2);
+        String stm = "INSERT INTO extra (nome,cargo,obs,valor,data) values(?,?,?,?,?)";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            pst.setString(1, nome);
+            pst.setString(2,cargo);
+            pst.setString(3,obs);
+            pst.setDouble(4, Double.parseDouble(valor));
+            pst.setDate(5, date);    
+            pst.execute();
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return false;
+    }
 }
 
 

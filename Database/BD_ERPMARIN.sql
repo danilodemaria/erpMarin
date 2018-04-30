@@ -128,6 +128,15 @@ create table bookingCard(
 	codSeg varchar(10)
 )
 
+create table extra(
+	id serial primary key,
+	nome varchar(100),
+	cargo varchar(100),
+	obs varchar(255),
+	valor decimal(10,2),
+	data timestamp
+);
+
 ALTER TABLE pedido ADD FOREIGN KEY (id_fornecedor) REFERENCES fornecedor(id);
 ALTER TABLE lancamento ADD FOREIGN KEY (id_produto) REFERENCES produto(id);
 ALTER TABLE lancamentoInterno ADD FOREIGN KEY (id_produto) REFERENCES produto(id);
