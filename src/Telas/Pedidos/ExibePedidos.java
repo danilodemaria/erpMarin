@@ -271,7 +271,7 @@ public class ExibePedidos extends javax.swing.JFrame {
                         new javax.mail.Authenticator() {
                              protected PasswordAuthentication getPasswordAuthentication()
                              {
-                                   return new PasswordAuthentication("daniloctg2007@gmail.com", "Beagoodperson14");
+                                   return new PasswordAuthentication("email", "senha");
                              }
                         });
 
