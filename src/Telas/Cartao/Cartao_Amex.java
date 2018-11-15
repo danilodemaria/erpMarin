@@ -94,6 +94,7 @@ public class Cartao_Amex extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jDialog1 = new javax.swing.JDialog();
         jLabel5 = new javax.swing.JLabel();
         dataPagamento = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -107,6 +108,17 @@ public class Cartao_Amex extends javax.swing.JFrame {
         buttonSair = new javax.swing.JButton();
         radioCielo = new javax.swing.JRadioButton();
         radioRede = new javax.swing.JRadioButton();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cartão American Express");
@@ -313,30 +325,31 @@ public class Cartao_Amex extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_buttonSairMouseClicked
 
-    private void radioCieloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioCieloMouseClicked
-        // TODO add your handling code here:
-        if(radioCielo.isSelected()){
-            radioCielo.setSelected(true);
-            radioRede.setSelected(false);
-            buttonCalculaMouseClicked(null);
-        }else{
-            radioCielo.setSelected(false);
-        }
-    }//GEN-LAST:event_radioCieloMouseClicked
-
     private void radioRedeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioRedeMouseClicked
         // TODO add your handling code here:
         if(radioRede.isSelected()){
-            radioRede.setSelected(true);
             radioCielo.setSelected(false);
             buttonCalculaMouseClicked(null);
         }else{
             radioRede.setSelected(false);
+            radioCielo.setSelected(true);
+            buttonCalculaMouseClicked(null);
         }
     }//GEN-LAST:event_radioRedeMouseClicked
 
-    public double converteValor(String aux) {
+    private void radioCieloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioCieloMouseClicked
+        // TODO add your handling code here:
+        if(radioCielo.isSelected()){
+            radioRede.setSelected(false);
+            buttonCalculaMouseClicked(null);
+        }else{
+            radioCielo.setSelected(false);
+            radioRede.setSelected(true);
+            buttonCalculaMouseClicked(null);
+        }
+    }//GEN-LAST:event_radioCieloMouseClicked
 
+    public double converteValor(String aux) {
         aux = aux.replace(".", "");
         aux = aux.replace(",", ".");
         return Double.parseDouble(aux);
@@ -381,6 +394,7 @@ public class Cartao_Amex extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton buttonSair;
     private javax.swing.JTextField dataPagamento;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

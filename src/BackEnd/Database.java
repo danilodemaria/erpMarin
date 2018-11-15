@@ -829,6 +829,56 @@ public class Database {
         }
         return false;
     }
+
+    public boolean cadastraAgenda(String nome, String fixo, String celular, String obs) {
+        String stm = "INSERT INTO agenda (nome, fixo, celular, obs) VALUES (?,?,?,?)";
+        PreparedStatement pst;
+
+        Connection conn = Connect();
+        try {
+            pst = conn.prepareStatement(stm);
+            pst.setString(1, nome);
+            pst.setString(2, fixo);
+            pst.setString(3, celular);
+            pst.setString(4, obs);      
+            pst.execute();
+            return true;
+        } catch (SQLException ex) {
+        }
+        return false;
+    }
+
+    public ResultSet buscaAgenda() {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+        
+        stm = "select * from agenda order by nome";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+    }
+    
+    public ResultSet buscaContatoAgenda(String a){
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String stm = null;
+        
+        stm = "select * from agenda where id = "+a+"";
+        try {
+            Connection conn = Database.Connect();
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
+        }
+        return rs;
+    }
 }
 
 

@@ -12,6 +12,8 @@ import Funcionarios.CadastraFolga;
 import Funcionarios.ExibeFolgas;
 import Funcionarios.Extras;
 import Funcionarios.Lancamento;
+import Telas.Agenda.CadastrarAgenda;
+import Telas.Agenda.VisualizaAgenda;
 import Telas.Cartao.Cartao_Amex;
 import Telas.Cartao.Cartao_Cielo_Parcelado;
 import Telas.Cartao.Cartoes_Booking;
@@ -40,6 +42,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,6 +77,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         AplicaNimbusLookAndFeel.pegaNimbus();
         Color minhaCor = new Color(204,255,204);
         this.getContentPane().setBackground(minhaCor);
+        labelFundo.setDropTarget(null);
     }
 
     public boolean fechar() {
@@ -109,7 +113,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
-        jLabel1 = new javax.swing.JLabel();
+        labelFundo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFinanceiro = new javax.swing.JMenu();
         menuCadastraFicha = new javax.swing.JMenuItem();
@@ -149,6 +153,10 @@ public class Menu_Principal extends javax.swing.JFrame {
         menuCadastraManutencao = new javax.swing.JMenuItem();
         menuVisualizaManutencao = new javax.swing.JMenuItem();
         menuManuConcluidas = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -161,8 +169,9 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         setTitle("Hotel Marin Château - V.1.0");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo.jpg"))); // NOI18N
+        labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo.jpg"))); // NOI18N
 
+        menuFinanceiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8_Paper_Money_32px.png"))); // NOI18N
         menuFinanceiro.setText("Financeiro");
         menuFinanceiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,6 +246,7 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(menuFinanceiro);
 
+        menuQuiosque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8_Coconut_Cocktail_32px.png"))); // NOI18N
         menuQuiosque.setText("Quiosque");
 
         menuCadastraProduto.setText("Cadastrar Produto");
@@ -317,6 +327,7 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(menuQuiosque);
 
+        menuCartao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8_Card_Payment_32px.png"))); // NOI18N
         menuCartao.setText("Cartão");
 
         menuRede.setText("Rede");
@@ -361,6 +372,7 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(menuCartao);
 
+        menuFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8_Business_Building_32px.png"))); // NOI18N
         menuFuncionarios.setText("Funcionários");
 
         menuCadastraFuncionario.setText("Cadastrar Funcionário");
@@ -405,6 +417,7 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(menuFuncionarios);
 
+        menuPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8_Shopping_Cart_32px.png"))); // NOI18N
         menuPedidos.setText("Pedidos");
 
         menuCadastraPedido.setText("Cadastrar Pedido");
@@ -425,6 +438,7 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(menuPedidos);
 
+        menuManutencao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8_Maintenance_32px.png"))); // NOI18N
         menuManutencao.setText("Manutenção");
 
         menuCadastraManutencao.setText("Cadastrar Manutenção");
@@ -453,6 +467,31 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(menuManutencao);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8_Phone_32px.png"))); // NOI18N
+        jMenu1.setText("Agenda");
+
+        jMenuItem10.setText("Cadastrar");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem10);
+
+        jMenuItem12.setText("Visualizar");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem12);
+
+        jMenuItem13.setText("Editar");
+        jMenu1.add(jMenuItem13);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8_Shutdown_32px.png"))); // NOI18N
         jMenu5.setText("Sair");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -472,13 +511,11 @@ public class Menu_Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addContainerGap(200, Short.MAX_VALUE))
+            .addComponent(labelFundo)
         );
 
         pack();
@@ -674,7 +711,8 @@ public class Menu_Principal extends javax.swing.JFrame {
 
     private void menuAmexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAmexActionPerformed
         // TODO add your handling code here:
-        Cartao_Amex card = new Cartao_Amex();
+        Cartao_Amex card;
+        card = new Cartao_Amex();
         card.setVisible(true);
     }//GEN-LAST:event_menuAmexActionPerformed
 
@@ -707,6 +745,18 @@ public class Menu_Principal extends javax.swing.JFrame {
         Extras a = new Extras();
         a.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+        CadastrarAgenda a = new CadastrarAgenda();
+        a.setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        // TODO add your handling code here:
+        VisualizaAgenda a = new VisualizaAgenda();
+        a.setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
 
 
     /**
@@ -745,11 +795,14 @@ public class Menu_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -758,6 +811,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JLabel labelFundo;
     private javax.swing.JMenuItem menuAmex;
     private javax.swing.JMenuItem menuCadastraFicha;
     private javax.swing.JMenuItem menuCadastraFuncionario;

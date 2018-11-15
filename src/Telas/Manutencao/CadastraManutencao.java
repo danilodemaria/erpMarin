@@ -93,7 +93,7 @@ public class CadastraManutencao extends javax.swing.JFrame {
         jLabel2.setText("Descrição");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Cadastra Manutenção Pendente");
+        jLabel3.setText("Cadastrar Manutenção Pendente");
 
         try{
             mascaracpf = new MaskFormatter("##/##/####");

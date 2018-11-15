@@ -128,9 +128,9 @@ public class ERPMarin {
 
                 public void actionPerformed(ActionEvent e) {
 
-                    trayIcon.displayMessage("Marin Château",
-                            "Abrindo aplicação",
-                            TrayIcon.MessageType.INFO);
+//                    trayIcon.displayMessage("Marin Château",
+//                            "Abrindo aplicação",
+//                            TrayIcon.MessageType.INFO);
                     menu.setVisible(true);
 
                 }
