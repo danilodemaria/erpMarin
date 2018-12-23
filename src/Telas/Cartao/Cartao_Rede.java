@@ -262,12 +262,12 @@ public class Cartao_Rede extends javax.swing.JFrame {
 
         if (String.valueOf(comboCartao.getSelectedItem()).equals("Crédito")) {
             aux = converteValor(textValor.getText());
-            aux = aux - (aux * 0.0367);
+            aux = aux - (aux * 0.0361);
             textValorAtualizado.setText(String.valueOf(df.format(aux)));
             suaData.setDate(suaData.getDate() + 30);
         } else {
             aux = converteValor(textValor.getText());
-            aux = aux - (aux * 0.0257);
+            aux = aux - (aux * 0.0251);
             textValorAtualizado.setText(String.valueOf(df.format(aux)));
             suaData.setDate(suaData.getDate() + 2);
         }
