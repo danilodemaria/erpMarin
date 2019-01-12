@@ -1,4 +1,3 @@
-
 package BackEnd;
 
 import java.sql.Connection;
@@ -183,8 +182,10 @@ public class Database {
 
         Date date = Date.valueOf(dataTemp2);
         Date date1 = Date.valueOf(dataTemp3);
-
-        stm = "select * FROM lancamento WHERE (data_venda BETWEEN '" + dataTemp2 + "' AND '" + dataTemp3 + "')";
+        
+        stm = "select a.id_produto,sum(a.quantidade) as qtd,sum(a.valor_total) as total,a.nome FROM lancamento a \n"
+                + "WHERE data_venda BETWEEN '" + dataTemp2 + "' AND '" + dataTemp3 + "' group by a.id_produto,a.nome order by qtd desc";
+        System.out.println(stm);
         try {
             Connection conn = Database.Connect();
             pst = conn.prepareStatement(stm);
@@ -194,7 +195,7 @@ public class Database {
         }
         return rs;
     }
-    
+
     public ResultSet buscaRelatorioInterno(String dataInicio, String dataFinal) throws ParseException {
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -208,7 +209,8 @@ public class Database {
         Date date = Date.valueOf(dataTemp2);
         Date date1 = Date.valueOf(dataTemp3);
 
-        stm = "select * FROM lancamentointerno WHERE (data_venda BETWEEN '" + dataTemp2 + "' AND '" + dataTemp3 + "')";
+        stm = "select a.id_produto,sum(a.quantidade) as qtd,sum(a.valor_total) as total,a.nome FROM lancamentointerno a \n"
+                + "WHERE data_venda BETWEEN '" + dataTemp2 + " 00:00' AND '" + dataTemp3 + " 23:59' group by a.id_produto, a.nome order by qtd desc";
         try {
             Connection conn = Database.Connect();
             pst = conn.prepareStatement(stm);
@@ -366,8 +368,8 @@ public class Database {
         return retorno;
 
     }
-    
-    public ResultSet buscaFaturamentoEntrada(){
+
+    public ResultSet buscaFaturamentoEntrada() {
         ResultSet rs = null;
         PreparedStatement pst = null;
         String stm = null;
@@ -382,8 +384,8 @@ public class Database {
         }
         return rs;
     }
-    
-    public ResultSet buscaFaturamentoSaida(){
+
+    public ResultSet buscaFaturamentoSaida() {
         ResultSet rs = null;
         PreparedStatement pst = null;
         String stm = null;
@@ -398,28 +400,27 @@ public class Database {
         }
         return rs;
     }
-    
+
     public boolean cadastraFuncionario(Funcionario x) {
         String stm = "INSERT INTO FUNCIONARIO (nome,tel1,cargo,salario,extra,valorFolga,data_admissao) VALUES (?,?,?,?,?,?,?)";
-        PreparedStatement pst;  
-        
-        
+        PreparedStatement pst;
+
         String dataTemp3[] = x.getDataEntrada().split("/");
         String dataTemp4 = dataTemp3[2] + "-" + dataTemp3[1] + "-" + dataTemp3[0];
-        
+
         Date date1 = Date.valueOf(dataTemp4);
 
         Connection conn = Database.Connect();
 
         try {
             pst = conn.prepareStatement(stm);
-            pst.setString(1, x.getNome());            
+            pst.setString(1, x.getNome());
             pst.setString(2, x.getTelefone1());
             pst.setString(3, x.getCargo());
             pst.setDouble(4, x.getSalario());
             pst.setDouble(5, x.getExtra());
             pst.setDouble(6, x.getValorFolga());
-            pst.setDate(7, date1);            
+            pst.setDate(7, date1);
             pst.execute();
             return true;
         } catch (SQLException ex) {
@@ -428,8 +429,8 @@ public class Database {
 
         return false;
     }
-    
-     public ResultSet buscaFuncionario(String text) {
+
+    public ResultSet buscaFuncionario(String text) {
         ResultSet rs = null;
         PreparedStatement pst = null;
         String stm = null;
@@ -445,30 +446,30 @@ public class Database {
         }
         return rs;
     }
-     
-     public ResultSet buscaFuncionarioNome(String text) {
-        String stm = "select id,nome from funcionario where nome ilike '%"+text+"%'";
+
+    public ResultSet buscaFuncionarioNome(String text) {
+        String stm = "select id,nome from funcionario where nome ilike '%" + text + "%'";
         PreparedStatement pst;
         ResultSet rs = null;
-        
+
         Connection conn = Database.Connect();
 
         try {
             pst = conn.prepareStatement(stm);
             rs = pst.executeQuery();
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro no banco de dados, contate o suporte técnico e mostre a mensagem a seguir. " + ex);
         }
         return rs;
     }
-     
-      public ArrayList<Fornecedor> buscaTodosFornecedores(String nome) {
+
+    public ArrayList<Fornecedor> buscaTodosFornecedores(String nome) {
         ArrayList<Fornecedor> saida = new ArrayList<>();
-        String stm = "select * from fornecedor where nome ilike  '%"+nome+"%'";
+        String stm = "select * from fornecedor where nome ilike  '%" + nome + "%'";
         PreparedStatement pst;
         ResultSet rs = null;
-          System.out.println(stm);
+        System.out.println(stm);
         Connection conn = Database.Connect();
 
         try {
@@ -489,27 +490,26 @@ public class Database {
     }
 
     public int buscaFornecedor(String text) throws SQLException {
-        String stm = "select id from fornecedor where nome ilike '%"+text+"%'";
+        String stm = "select id from fornecedor where nome ilike '%" + text + "%'";
         PreparedStatement pst;
         ResultSet rs = null;
-        int id=0;
+        int id = 0;
         Connection conn = Database.Connect();
 
         try {
             pst = conn.prepareStatement(stm);
             rs = pst.executeQuery();
 
-            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro no banco de dados, contate o suporte técnico e mostre a mensagem a seguir. " + ex);
         }
-         while (rs.next()) {
-               id = rs.getInt("id");
-               
-            }
+        while (rs.next()) {
+            id = rs.getInt("id");
+
+        }
         return id;
     }
-    
+
     public boolean insereCompra(String nome, String quantidade, String id) {
         String stm = "INSERT INTO pedido (id_fornecedor, descricao, concluido, quantidade) VALUES (?,?,?,?)";
         PreparedStatement pst;
@@ -533,8 +533,8 @@ public class Database {
     public ResultSet buscaPedidos(String text) {
         String stm = "select a.id,id_fornecedor,descricao,concluido,quantidade,b.nome "
                 + "from pedido a left join fornecedor b on a.id_fornecedor = b.id where nome "
-                + "ilike '"+text+"' and a.concluido = false order by a.descricao";
-        
+                + "ilike '" + text + "' and a.concluido = false order by a.descricao";
+
         PreparedStatement pst;
         ResultSet rs = null;
         Connection conn = Database.Connect();
@@ -543,31 +543,30 @@ public class Database {
             pst = conn.prepareStatement(stm);
             rs = pst.executeQuery();
 
-            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro no banco de dados, contate o suporte técnico e mostre a mensagem a seguir. " + ex);
         }
-        
+
         return rs;
 
     }
 
     public boolean atualizaPedidos(String id) throws SQLException {
-        
-        String stm = "UPDATE pedido SET concluido = true where id_fornecedor = "+id+"";
+
+        String stm = "UPDATE pedido SET concluido = true where id_fornecedor = " + id + "";
         PreparedStatement pst;
         Connection conn = Database.Connect();
-        boolean retorno=false;  
-        
+        boolean retorno = false;
+
         try {
             pst = conn.prepareStatement(stm);
             pst.execute();
-            retorno=true;
-        } catch (SQLException ex) {            
+            retorno = true;
+        } catch (SQLException ex) {
             retorno = false;
         }
         return retorno;
-    }        
+    }
 
     public boolean insereComandaInterna(int codigo, int quantidade, float valor_total, String nome, String data) {
         PreparedStatement pst;
@@ -592,7 +591,7 @@ public class Database {
         }
         return false;
     }
-    
+
     public ResultSet buscaProdutoRelatorioInterno(String dataInicio, String dataFinal, String codigo) {
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -632,7 +631,7 @@ public class Database {
             pst = conn.prepareStatement(stm);
             pst.setString(1, descricao);
             pst.setDate(2, date);
-            pst.setBoolean(3, false);     
+            pst.setBoolean(3, false);
             pst.execute();
             conn.close();
             return true;
@@ -657,7 +656,7 @@ public class Database {
             pst.setInt(3, Integer.parseInt(isca));
             pst.setInt(4, Integer.parseInt(bolinho));
             pst.setInt(5, Integer.parseInt(casquinha));
-            pst.setDate(6, date);     
+            pst.setDate(6, date);
             pst.execute();
             conn.close();
             return true;
@@ -671,7 +670,7 @@ public class Database {
         ResultSet rs = null;
         PreparedStatement pst = null;
         String stm = null;
-        
+
         stm = "select * from manutencao where concluido = false order by descricao";
         try {
             Connection conn = Database.Connect();
@@ -684,16 +683,16 @@ public class Database {
     }
 
     public boolean marcaManutencaoFeito(String id) {
-        String stm = "UPDATE manutencao SET concluido = true where id = "+id+"";
+        String stm = "UPDATE manutencao SET concluido = true where id = " + id + "";
         PreparedStatement pst;
         Connection conn = Database.Connect();
-        boolean retorno=false;  
-        
+        boolean retorno = false;
+
         try {
             pst = conn.prepareStatement(stm);
             pst.execute();
-            retorno=true;
-        } catch (SQLException ex) {            
+            retorno = true;
+        } catch (SQLException ex) {
             retorno = false;
         }
         return retorno;
@@ -703,7 +702,7 @@ public class Database {
         ResultSet rs = null;
         PreparedStatement pst = null;
         String stm = null;
-        
+
         stm = "select * from manutencao where concluido = true order by descricao";
         try {
             Connection conn = Database.Connect();
@@ -719,7 +718,7 @@ public class Database {
         ResultSet rs = null;
         PreparedStatement pst = null;
         String stm = null;
-        
+
         stm = "select * from financeiro_controle order by titular";
         try {
             Connection conn = Database.Connect();
@@ -735,8 +734,8 @@ public class Database {
         ResultSet rs = null;
         PreparedStatement pst = null;
         String stm = null;
-        
-        stm = "select * from financeiro_controle where id = "+id+"";
+
+        stm = "select * from financeiro_controle where id = " + id + "";
         try {
             Connection conn = Database.Connect();
             pst = conn.prepareStatement(stm);
@@ -758,7 +757,7 @@ public class Database {
             pst.setString(2, id);
             pst.setString(3, numCard);
             pst.setString(4, validade);
-            pst.setString(5, cod);            
+            pst.setString(5, cod);
             pst.execute();
             return true;
         } catch (SQLException ex) {
@@ -777,7 +776,7 @@ public class Database {
             Connection conn = Database.Connect();
             pst = conn.prepareStatement(stm);
             pst.setInt(1, Integer.parseInt(cod));
-            pst.setDate(2, date);    
+            pst.setDate(2, date);
             pst.execute();
             conn.close();
             return true;
@@ -785,15 +784,15 @@ public class Database {
             JOptionPane.showMessageDialog(null, "Problemas ao conectar ao banco, contate o suporte");
         }
         return false;
-        
+
     }
 
     public ResultSet buscaFolgas(String in, String out) {
         ResultSet rs = null;
         PreparedStatement pst = null;
         String stm = null;
-        
-        stm = "select a.id,a.nome,b.data from funcionario a inner join folga_funcionario b on (a.id = b.id_funcionario) and b.data between '"+in+"' and '"+out+"' order by a.nome,b.data";
+
+        stm = "select a.id,a.nome,b.data from funcionario a inner join folga_funcionario b on (a.id = b.id_funcionario) and b.data between '" + in + "' and '" + out + "' order by a.nome,b.data";
         try {
             Connection conn = Database.Connect();
             pst = conn.prepareStatement(stm);
@@ -803,24 +802,24 @@ public class Database {
         }
         return rs;
     }
-    
-    public boolean cadastraExtra (String nome, String valor, String data, String cargo, String obs){
+
+    public boolean cadastraExtra(String nome, String valor, String data, String cargo, String obs) {
         PreparedStatement pst;
         String dataTemp[] = data.split("/");
         String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
 
         valor = valor.replace(".", "");
-        valor = valor.replace(",",".");
+        valor = valor.replace(",", ".");
         Date date = Date.valueOf(dataTemp2);
         String stm = "INSERT INTO extra (nome,cargo,obs,valor,data) values(?,?,?,?,?)";
         try {
             Connection conn = Database.Connect();
             pst = conn.prepareStatement(stm);
             pst.setString(1, nome);
-            pst.setString(2,cargo);
-            pst.setString(3,obs);
+            pst.setString(2, cargo);
+            pst.setString(3, obs);
             pst.setDouble(4, Double.parseDouble(valor));
-            pst.setDate(5, date);    
+            pst.setDate(5, date);
             pst.execute();
             conn.close();
             return true;
@@ -840,7 +839,7 @@ public class Database {
             pst.setString(1, nome);
             pst.setString(2, fixo);
             pst.setString(3, celular);
-            pst.setString(4, obs);      
+            pst.setString(4, obs);
             pst.execute();
             return true;
         } catch (SQLException ex) {
@@ -852,7 +851,7 @@ public class Database {
         ResultSet rs = null;
         PreparedStatement pst = null;
         String stm = null;
-        
+
         stm = "select * from agenda order by nome";
         try {
             Connection conn = Database.Connect();
@@ -863,13 +862,13 @@ public class Database {
         }
         return rs;
     }
-    
-    public ResultSet buscaContatoAgenda(String a){
+
+    public ResultSet buscaContatoAgenda(String a) {
         ResultSet rs = null;
         PreparedStatement pst = null;
         String stm = null;
-        
-        stm = "select * from agenda where id = "+a+"";
+
+        stm = "select * from agenda where id = " + a + "";
         try {
             Connection conn = Database.Connect();
             pst = conn.prepareStatement(stm);
@@ -880,5 +879,3 @@ public class Database {
         return rs;
     }
 }
-
-

@@ -153,7 +153,7 @@ public class Extras extends javax.swing.JFrame {
         jLabel7.setText("Cargo");
 
         comboBoxCargo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        comboBoxCargo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Camareira", "Recepção", "Cozinha", "Garçom", "Auxiliar", "Ajudante" }));
+        comboBoxCargo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Camareira", "Recepção", "Cozinha", "Garçom", "Auxiliar", "Ajudante", "Zelador", "Aux. Adm" }));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Observações");

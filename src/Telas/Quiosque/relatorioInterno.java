@@ -270,10 +270,10 @@ public class relatorioInterno extends javax.swing.JFrame {
         }
         try {
             while (rs.next()) {
-                id.add(rs.getInt("id"));
+                id.add(rs.getInt("id_produto"));
                 nome.add(rs.getString("nome"));
-                quantidade.add(rs.getString("quantidade"));
-                aux=rs.getDouble("valor_total");
+                quantidade.add(rs.getString("qtd"));
+                aux=rs.getDouble("total");
                 total=total+aux;
                 aux1=formatoDois2.format(aux);
                 valor_total.add(aux1);

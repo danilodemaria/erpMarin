@@ -178,13 +178,15 @@
           <Font name="Tahoma" size="12" style="1"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
+          <StringArray count="8">
             <StringItem index="0" value="Camareira"/>
             <StringItem index="1" value="Recep&#xe7;&#xe3;o"/>
             <StringItem index="2" value="Cozinha"/>
             <StringItem index="3" value="Gar&#xe7;om"/>
             <StringItem index="4" value="Auxiliar"/>
             <StringItem index="5" value="Ajudante"/>
+            <StringItem index="6" value="Zelador"/>
+            <StringItem index="7" value="Aux. Adm"/>
           </StringArray>
         </Property>
       </Properties>

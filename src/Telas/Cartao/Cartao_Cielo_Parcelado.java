@@ -261,7 +261,7 @@ public class Cartao_Cielo_Parcelado extends javax.swing.JFrame {
         // TODO add your handling code here:
         double aux = 0,parcela=0;
         DecimalFormat df = new DecimalFormat("####.##");
-        df.setRoundingMode(RoundingMode.HALF_UP);
+        df.setRoundingMode(RoundingMode.FLOOR);
         Date suaData;
         suaData = Date.valueOf(textData.getText());
         String auxData;

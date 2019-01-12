@@ -48,7 +48,7 @@
 				<textElement textAlignment="Left">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[referente aos dias trabalhados que estão na descrição.]]></text>
+				<text><![CDATA[]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="30" y="75" width="110" height="30" uuid="3fc9dec1-44e4-445b-880d-18030a20ce4e">
@@ -103,7 +103,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Dias Trabalhados:]]></text>
+				<text><![CDATA[Informações Adicionais:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="140" y="135" width="356" height="30" uuid="14226dd5-9b7d-4180-abbd-8a370b12d3e6"/>
