@@ -196,7 +196,7 @@ public class Database {
         return rs;
     }
 
-    public ResultSet buscaRelatorioInterno(String dataInicio, String dataFinal) throws ParseException {
+    public ResultSet buscaRelatorioInterno(String dataInicio, String dataFinal,String codigoGarcom) throws ParseException {
         ResultSet rs = null;
         PreparedStatement pst = null;
         String stm = null;
@@ -209,8 +209,8 @@ public class Database {
         Date date = Date.valueOf(dataTemp2);
         Date date1 = Date.valueOf(dataTemp3);
 
-        stm = "select a.id_produto,sum(a.quantidade) as qtd,sum(a.valor_total) as total,a.nome FROM lancamentointerno a \n"
-                + "WHERE data_venda BETWEEN '" + dataTemp2 + " 00:00' AND '" + dataTemp3 + " 23:59' group by a.id_produto, a.nome order by qtd desc";
+        stm = "select a.id_produto,sum(a.quantidade) as qtd,sum(a.valor_total) as total,a.nome, a.cod_garcom FROM lancamentointerno a \n"
+                + "WHERE data_venda BETWEEN '" + dataTemp2 + " 00:00' AND '" + dataTemp3 + " 23:59' and cod_garcom='"+codigoGarcom+"' group by a.id_produto, a.nome,a.cod_garcom order by qtd desc";
         try {
             Connection conn = Database.Connect();
             pst = conn.prepareStatement(stm);
@@ -568,13 +568,13 @@ public class Database {
         return retorno;
     }
 
-    public boolean insereComandaInterna(int codigo, int quantidade, float valor_total, String nome, String data) {
+    public boolean insereComandaInterna(int codigo, int quantidade, float valor_total, String nome, String data, String codGarcom) {
         PreparedStatement pst;
         String dataTemp[] = data.split("/");
         String dataTemp2 = dataTemp[2] + "-" + dataTemp[1] + "-" + dataTemp[0];
 
         Date date = Date.valueOf(dataTemp2);
-        String stm = "INSERT INTO lancamentoInterno (id_produto, quantidade, valor_total, nome, data_venda) values(?, ?, ?, ?, ?)";
+        String stm = "INSERT INTO lancamentoInterno (id_produto, quantidade, valor_total, nome, data_venda,cod_garcom) values(?, ?, ?, ?, ?,?)";
         try {
             Connection conn = Database.Connect();
             pst = conn.prepareStatement(stm);
@@ -583,6 +583,7 @@ public class Database {
             pst.setFloat(3, valor_total);
             pst.setString(4, nome);
             pst.setDate(5, date);
+            pst.setString(6,codGarcom);
             pst.execute();
             conn.close();
             return true;

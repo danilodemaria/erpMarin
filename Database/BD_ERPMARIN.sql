@@ -46,7 +46,8 @@ create table lancamentoInterno(
 	quantidade integer,
 	valor_total decimal(10,2),
 	nome varchar(50),
-	data_venda timestamp
+	data_venda timestamp,
+	cod_garcom varchar(2)
 );
 
 

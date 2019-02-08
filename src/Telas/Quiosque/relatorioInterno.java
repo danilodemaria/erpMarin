@@ -39,13 +39,14 @@ import javax.swing.text.MaskFormatter;
  */
 public class relatorioInterno extends javax.swing.JFrame {
 
-     MaskFormatter mascaracpf;
+    MaskFormatter mascaracpf;
 
     private ArrayList<Object> id = new ArrayList<>();
     private ArrayList<Object> nome = new ArrayList<>();
     private ArrayList<Object> quantidade = new ArrayList<>();
     private ArrayList<Object> valor_total = new ArrayList<>();
     private double valorFinalTotal = 0;
+
     /**
      * Creates new form relatorioInterno
      */
@@ -67,19 +68,21 @@ public class relatorioInterno extends javax.swing.JFrame {
         };
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escapeKeyStroke, "ESCAPE");
         getRootPane().getActionMap().put("ESCAPE", escapeAction);
-        
+
         URL url1 = this.getClass().getResource("/Imagens/02.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url1);
         this.setIconImage(iconeTitulo);
-        Color minhaCor = new Color(204,255,204);
+        Color minhaCor = new Color(204, 255, 204);
         this.getContentPane().setBackground(minhaCor);
         dataInicio.setCaretPosition(0);
     }
-    
-     public boolean fechar() {
+
+    public boolean fechar() {
         this.dispose();
         return true;
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -101,6 +104,8 @@ public class relatorioInterno extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         valor_total_diario = new javax.swing.JFormattedTextField();
         sair = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        codGarom = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Relatório de Produtos Vendidos - Interno");
@@ -178,6 +183,9 @@ public class relatorioInterno extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Garçom");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,7 +205,11 @@ public class relatorioInterno extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(dataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(buscarButton))))
+                                .addComponent(buscarButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(codGarom, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(304, 304, 304)
                         .addComponent(sair))
@@ -221,7 +233,9 @@ public class relatorioInterno extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(dataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarButton))
+                    .addComponent(buscarButton)
+                    .addComponent(jLabel1)
+                    .addComponent(codGarom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
@@ -257,14 +271,14 @@ public class relatorioInterno extends javax.swing.JFrame {
         tabela1.setNumRows(0);
         Database a = new Database();
         ResultSet rs = null;
-        DecimalFormat formatoDois2 = new DecimalFormat("R$ ##,###,###,###,##0.00", new DecimalFormatSymbols (new Locale("pt","BR")));
+        DecimalFormat formatoDois2 = new DecimalFormat("R$ ##,###,###,###,##0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
         formatoDois2.setMinimumFractionDigits(2);
         formatoDois2.setParseBigDecimal(true);
-        double aux=0;
-        String aux1=null;
-        double total=0;
+        double aux = 0;
+        String aux1 = null;
+        double total = 0;
         try {
-            rs = a.buscaRelatorioInterno(dataInicio.getText(), dataFinal.getText());
+            rs = a.buscaRelatorioInterno(dataInicio.getText(), dataFinal.getText(),codGarom.getText());
         } catch (ParseException ex) {
             Logger.getLogger(relatorio.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -273,9 +287,9 @@ public class relatorioInterno extends javax.swing.JFrame {
                 id.add(rs.getInt("id_produto"));
                 nome.add(rs.getString("nome"));
                 quantidade.add(rs.getString("qtd"));
-                aux=rs.getDouble("total");
-                total=total+aux;
-                aux1=formatoDois2.format(aux);
+                aux = rs.getDouble("total");
+                total = total + aux;
+                aux1 = formatoDois2.format(aux);
                 valor_total.add(aux1);
             }
         } catch (SQLException ex) {
@@ -342,8 +356,10 @@ public class relatorioInterno extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarButton;
+    private javax.swing.JTextField codGarom;
     private javax.swing.JFormattedTextField dataFinal;
     private javax.swing.JFormattedTextField dataInicio;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

@@ -86,6 +86,8 @@ public class LancaInterno extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         nome = new javax.swing.JTextField();
         lancar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        codGarcom = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lançamento de Comandas Internas");
@@ -150,6 +152,15 @@ public class LancaInterno extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("Garçom");
+
+        codGarcom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codGarcomActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,7 +184,12 @@ public class LancaInterno extends javax.swing.JFrame {
                         .addComponent(qtd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                         .addComponent(codigo, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(valor_total, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(codGarcom, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -188,7 +204,10 @@ public class LancaInterno extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(codGarcom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(qtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,7 +271,7 @@ public class LancaInterno extends javax.swing.JFrame {
 
     private void lancarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lancarMouseClicked
         if (a.insereComandaInterna(Integer.parseInt(codigo.getText()), Integer.parseInt(qtd.getText()),
-                Float.parseFloat(valor_total.getText()), nome.getText(), data.getText())) {
+                Float.parseFloat(valor_total.getText()), nome.getText(), data.getText(),codGarcom.getText())) {
             JOptionPane.showMessageDialog(null, "Lançado com sucesso");
             qtd.setText(null);
             nome.setText(null);
@@ -261,6 +280,10 @@ public class LancaInterno extends javax.swing.JFrame {
             qtd.requestFocus();
         }
     }//GEN-LAST:event_lancarMouseClicked
+
+    private void codGarcomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codGarcomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codGarcomActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,6 +321,7 @@ public class LancaInterno extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField codGarcom;
     private javax.swing.JTextField codigo;
     private javax.swing.JFormattedTextField data;
     private javax.swing.JLabel jLabel1;
@@ -306,6 +330,7 @@ public class LancaInterno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JButton lancar;
     private javax.swing.JTextField nome;
     private javax.swing.JTextField qtd;
