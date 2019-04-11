@@ -14,9 +14,13 @@ import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -35,6 +39,7 @@ public class LancaInterno extends javax.swing.JFrame {
 
     Database a = new Database();
     MaskFormatter mascaradata;
+    private ArrayList<Object> valor_totalAx = new ArrayList<>();
     
     public LancaInterno() {
         initComponents();               
@@ -88,6 +93,8 @@ public class LancaInterno extends javax.swing.JFrame {
         lancar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         codGarcom = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        valorDia = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lançamento de Comandas Internas");
@@ -161,6 +168,12 @@ public class LancaInterno extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setText("Dia: R$");
+
+        valorDia.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        valorDia.setText("0,00");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,10 +193,15 @@ public class LancaInterno extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(qtd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                        .addComponent(codigo, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(valor_total, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(qtd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                            .addComponent(codigo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(valor_total, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(valorDia))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -202,20 +220,28 @@ public class LancaInterno extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(codGarcom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7)))
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(qtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(valorDia))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -272,7 +298,8 @@ public class LancaInterno extends javax.swing.JFrame {
     private void lancarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lancarMouseClicked
         if (a.insereComandaInterna(Integer.parseInt(codigo.getText()), Integer.parseInt(qtd.getText()),
                 Float.parseFloat(valor_total.getText()), nome.getText(), data.getText(),codGarcom.getText())) {
-            JOptionPane.showMessageDialog(null, "Lançado com sucesso");
+            JOptionPane.showMessageDialog(null, "Lançado com sucesso");            
+            atualizadia();            
             qtd.setText(null);
             nome.setText(null);
             codigo.setText(null);
@@ -283,6 +310,7 @@ public class LancaInterno extends javax.swing.JFrame {
 
     private void codGarcomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codGarcomActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_codGarcomActionPerformed
 
     /**
@@ -331,9 +359,40 @@ public class LancaInterno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JButton lancar;
     private javax.swing.JTextField nome;
     private javax.swing.JTextField qtd;
+    private javax.swing.JLabel valorDia;
     private javax.swing.JTextField valor_total;
     // End of variables declaration//GEN-END:variables
+
+    private void atualizadia() {
+         ResultSet rs = null;
+        double total = 0;
+        String aux1 = null;
+        double aux = 0;
+        DecimalFormat formatoDois2 = new DecimalFormat("R$ ##,###,###,###,##0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
+        formatoDois2.setMinimumFractionDigits(2);
+        formatoDois2.setParseBigDecimal(true);
+        try {
+            rs = a.buscaRelatorioInterno(data.getText(), data.getText(),codGarcom.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(relatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            while (rs.next()) {
+
+                aux = rs.getDouble("total");
+                total = total + aux;
+                aux1 = formatoDois2.format(aux);
+                valor_totalAx.add(aux1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(relatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        valorDia.setText(String.valueOf(formatoDois2.format(total)));
+    }
 }

@@ -6,6 +6,7 @@
 package Funcionarios;
 
 import BackEnd.Database;
+import BackEnd.ValorMasc;
 import Telas.Pedidos.ExibePedidos;
 import java.awt.Color;
 import java.awt.Image;
@@ -15,8 +16,11 @@ import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -58,6 +62,7 @@ public class ExibeFolgas extends javax.swing.JFrame {
         this.setIconImage(iconeTitulo);
         Color minhaCor = new Color(204,255,204);
         this.getContentPane().setBackground(minhaCor);
+                        
     }
     
     public boolean fechar() {
@@ -82,6 +87,10 @@ public class ExibeFolgas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        numFolgas = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        economia = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Exibir Folgas");
@@ -150,6 +159,18 @@ public class ExibeFolgas extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Total de folgas:");
+
+        numFolgas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        numFolgas.setText("0");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Media de Economia: ");
+
+        economia.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        economia.setText("0,00");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,7 +194,16 @@ public class ExibeFolgas extends javax.swing.JFrame {
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(numFolgas)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(economia)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -189,11 +219,17 @@ public class ExibeFolgas extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))))
-                .addGap(50, 50, 50)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(numFolgas, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(economia, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
@@ -201,6 +237,9 @@ public class ExibeFolgas extends javax.swing.JFrame {
 
     private void outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outActionPerformed
         // TODO add your handling code here:
+        DecimalFormat formatoDois = new DecimalFormat("##,###,###,###,##0.00", new DecimalFormatSymbols (new Locale("pt","BR")));
+        formatoDois.setMinimumFractionDigits(2);
+        formatoDois.setParseBigDecimal(true);
         limpaTabela();
         ResultSet rs = null;
         rs = conexao.buscaFolgas(in.getText(),out.getText());
@@ -218,6 +257,11 @@ public class ExibeFolgas extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(ExibePedidos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        
+        numFolgas.setText(String.valueOf(tabela.getRowCount()));
+        economia.setText(String.valueOf("R$ "+formatoDois.format((tabela.getRowCount()*150))));
         
     
     }//GEN-LAST:event_outActionPerformed
@@ -263,12 +307,16 @@ public class ExibeFolgas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel economia;
     private javax.swing.JTextField in;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel numFolgas;
     private javax.swing.JTextField out;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
