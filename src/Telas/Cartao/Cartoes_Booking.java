@@ -16,9 +16,14 @@ import java.net.URL;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.MaskFormatter;
+import java.io.File;
+import net.sourceforge.tess4j.*;
+import net.sourceforge.tess4j.util.LoadLibs;
 
 /**
  *
@@ -29,10 +34,10 @@ public class Cartoes_Booking extends javax.swing.JFrame {
     /**
      * Creates new form Cartões_Booking
      */
-    
     MaskFormatter mascaraData;
     Database conexao = new Database();
     Upper a = new Upper();
+
     public Cartoes_Booking() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -47,15 +52,15 @@ public class Cartoes_Booking extends javax.swing.JFrame {
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escapeKeyStroke, "ESCAPE");
         getRootPane().getActionMap().put("ESCAPE", escapeAction);
 
-        URL url1 = this.getClass().getResource("/Imagens/02.png");
-        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url1);
-        this.setIconImage(iconeTitulo);
+        //URL url1 = this.getClass().getResource("/Imagens/02.png");
+        //Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url1);
+        //this.setIconImage(iconeTitulo);
         Color minhaCor = new Color(204, 255, 204);
         this.getContentPane().setBackground(minhaCor);
         a.upperCase(titular);
-        
+
     }
-    
+
     public boolean fechar() {
         this.dispose();
         return true;
@@ -83,6 +88,8 @@ public class Cartoes_Booking extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        labelArquivo = new javax.swing.JLabel();
+        buttonArquivo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Cartões Booking");
@@ -141,43 +148,64 @@ public class Cartoes_Booking extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Cartões Booking");
 
+        labelArquivo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelArquivo.setText("Arquivo");
+
+        buttonArquivo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        buttonArquivo.setText("Arquivo");
+        buttonArquivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonArquivoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jLabel1))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel3)
-                .addGap(74, 74, 74)
-                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonArquivo)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(10, 10, 10)
+                        .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel4)
-                .addGap(48, 48, 48)
-                .addComponent(numCard, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel2)
-                .addGap(101, 101, 101)
-                .addComponent(titular, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel5)
-                .addGap(89, 89, 89)
-                .addComponent(validade, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel6)
-                .addGap(10, 10, 10)
-                .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jButton1)
-                .addGap(351, 351, 351)
-                .addComponent(jButton2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel3)
+                        .addGap(74, 74, 74)
+                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel4)
+                        .addGap(48, 48, 48)
+                        .addComponent(numCard, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel2)
+                        .addGap(101, 101, 101)
+                        .addComponent(titular, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel5)
+                        .addGap(89, 89, 89)
+                        .addComponent(validade, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addGap(351, 351, 351)
+                        .addComponent(jButton2)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,10 +232,15 @@ public class Cartoes_Booking extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelArquivo)
+                    .addComponent(buttonArquivo))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)))
+                    .addComponent(jButton2))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -223,7 +256,7 @@ public class Cartoes_Booking extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        if(conexao.insereCardBooking(titular.getText(),id.getText(),numCard.getText(),validade.getText(),cod.getText())){
+        if (conexao.insereCardBooking(titular.getText(), id.getText(), numCard.getText(), validade.getText(), cod.getText())) {
             JOptionPane.showMessageDialog(null, "Inserido com sucesso");
             titular.setText(null);
             id.setText(null);
@@ -231,7 +264,7 @@ public class Cartoes_Booking extends javax.swing.JFrame {
             validade.setText(null);
             cod.setText(null);
             titular.requestFocus();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Não foi inserido, verifique as informações digitadas.");
         }
     }//GEN-LAST:event_jButton2MouseClicked
@@ -240,6 +273,57 @@ public class Cartoes_Booking extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void buttonArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonArquivoActionPerformed
+        // TODO add your handling code here:
+        JFileChooser arquivo = new JFileChooser();
+
+        FileNameExtensionFilter filtroImagem = new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png","tif","pdf");
+        arquivo.addChoosableFileFilter(filtroImagem);
+        arquivo.setCurrentDirectory(new java.io.File("C:\\Users\\Administração\\Desktop"));
+        arquivo.setAcceptAllFileFilterUsed(false);
+        if (arquivo.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            labelArquivo.setText(arquivo.getSelectedFile().getAbsolutePath());
+        }
+
+        ITesseract instance = new Tesseract();
+        String imgText = "";
+        instance.setLanguage("eng");
+        
+        File tessDataFolder = LoadLibs.extractTessResources("tessdata");
+        instance.setDatapath(tessDataFolder.getAbsolutePath());
+        try {
+            imgText = instance.doOCR(new File(labelArquivo.getText()));
+        } catch (TesseractException e) {
+            System.out.println(e);
+        }
+        
+        String[] lines = imgText.split("\\r?\\n");
+        int aux,aux1;
+        for (String line : lines) {
+            if(line.contains("Reservation ID:")){                
+                aux = line.length();
+                id.setText(line.substring((aux-10), aux));
+            }else if(line.contains("Card number:")){                
+                aux = line.length();
+                numCard.setText(line.substring((aux-16),aux));
+            }else if(line.contains("Card holder's name")){
+                aux = line.length();
+                aux1 = 5+ line.indexOf("name:");
+                titular.setText(line.substring(aux1,aux).toUpperCase());
+            }else if(line.contains("Expiration Date:")){
+                aux = line.length();
+                validade.setText(line.substring(aux-9,aux));
+            }else if(line.contains("CVC Code:")){
+                aux = line.length();
+                cod.setText(line.substring(aux-4,aux));
+            }
+            
+        }
+
+
+
+    }//GEN-LAST:event_buttonArquivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,6 +362,7 @@ public class Cartoes_Booking extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonArquivo;
     private javax.swing.JTextField cod;
     private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
@@ -288,6 +373,7 @@ public class Cartoes_Booking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel labelArquivo;
     private javax.swing.JTextField numCard;
     private javax.swing.JTextField titular;
     private javax.swing.JTextField validade;
