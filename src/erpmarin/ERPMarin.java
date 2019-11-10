@@ -6,11 +6,10 @@
 package erpmarin;
 
 import Telas.Cartao.Cartoes_Booking;
+import Telas.Menu;
 import Telas.Menu_Principal;
 import Telas.Quiosque.LancaInterno;
 import java.awt.AWTException;
-import java.awt.CheckboxMenuItem;
-import java.awt.Image;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
 import java.awt.SystemTray;
@@ -85,24 +84,32 @@ public class ERPMarin {
                     System.exit(0);
                 }
             };
-            
-             ActionListener cardBooking = new ActionListener() {
+
+            ActionListener cardBooking = new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                     Cartoes_Booking booking = new Cartoes_Booking();
+                    Cartoes_Booking booking = new Cartoes_Booking();
                     booking.setVisible(true);
                 }
             };
-             
-             ActionListener quiosqueShort = new ActionListener() {
+
+            ActionListener quiosqueShort = new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                     LancaInterno lanca= new LancaInterno();
+                    LancaInterno lanca = new LancaInterno();
                     lanca.setVisible(true);
                 }
             };
 
-    // Criamos um ActionListener para a exibir uma mensagem na tela ao clicarmos
+            ActionListener checkinShort = new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    Menu menuCheck = new Menu();
+                    menuCheck.setVisible(true);
+                }
+            };
+
+            // Criamos um ActionListener para a exibir uma mensagem na tela ao clicarmos
             //em um item do menu.
             ActionListener mostramsglistener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -118,6 +125,7 @@ public class ERPMarin {
             MenuItem abrir = new MenuItem("Abrir");
             MenuItem cartao = new MenuItem("Booking Card");
             MenuItem quiosque = new MenuItem("Lança Interno");
+            MenuItem checkin = new MenuItem("Check-in Online");
 
             MenuItem sair = new MenuItem("Sair");
 
@@ -127,10 +135,12 @@ public class ERPMarin {
             sair.addActionListener(exitListener);
             cartao.addActionListener(cardBooking);
             quiosque.addActionListener(quiosqueShort);
+            checkin.addActionListener(checkinShort);
             //Adicionando itens ao PopupMenu
             popup.add(abrir);
             popup.add(cartao);
             popup.add(quiosque);
+            popup.add(checkin);
             popup.add(sair);
 
             trayIcon = new TrayIcon(image, "ERP Hotel Marin Château", popup);

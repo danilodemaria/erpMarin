@@ -297,24 +297,24 @@ public class Cartoes_Booking extends javax.swing.JFrame {
         } catch (TesseractException e) {
             System.out.println(e);
         }
-        
+        System.out.println("Texto: "+imgText);
         String[] lines = imgText.split("\\r?\\n");
         int aux,aux1;
         for (String line : lines) {
-            if(line.contains("Reservation ID:")){                
+            if(line.contains("Reservation ID:") || line.contains("Numero da reserva:")){                
                 aux = line.length();
                 id.setText(line.substring((aux-10), aux));
-            }else if(line.contains("Card number:")){                
+            }else if(line.contains("Card number:") || line.contains("NL’Jmero do cartao:")){                
                 aux = line.length();
                 numCard.setText(line.substring((aux-16),aux));
-            }else if(line.contains("Card holder's name")){
+            }else if(line.contains("Card holder's name") || line.contains("Nome do titular do cartao:") ){
                 aux = line.length();
                 aux1 = 5+ line.indexOf("name:");
                 titular.setText(line.substring(aux1,aux).toUpperCase());
-            }else if(line.contains("Expiration Date:")){
+            }else if(line.contains("Expiration Date:") || line.contains("Data de validade:")){
                 aux = line.length();
                 validade.setText(line.substring(aux-9,aux));
-            }else if(line.contains("CVC Code:")){
+            }else if(line.contains("CVC Code:") || line.contains("Codigo de seguranga:")){
                 aux = line.length();
                 cod.setText(line.substring(aux-4,aux));
             }

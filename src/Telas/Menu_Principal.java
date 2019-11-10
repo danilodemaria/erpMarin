@@ -124,6 +124,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         menuFaturaTotal = new javax.swing.JMenuItem();
         menuVisualizaEntrada = new javax.swing.JMenuItem();
         menuVisualizaSaida = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         menuQuiosque = new javax.swing.JMenu();
         menuCadastraProduto = new javax.swing.JMenuItem();
         menuComandaExt = new javax.swing.JMenuItem();
@@ -243,6 +244,14 @@ public class Menu_Principal extends javax.swing.JFrame {
             }
         });
         menuFinanceiro.add(menuVisualizaSaida);
+
+        jMenuItem14.setText("CheckIn Online");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        menuFinanceiro.add(jMenuItem14);
 
         jMenuBar1.add(menuFinanceiro);
 
@@ -758,6 +767,12 @@ public class Menu_Principal extends javax.swing.JFrame {
         a.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        Menu a = new Menu();
+        a.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -803,6 +818,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
