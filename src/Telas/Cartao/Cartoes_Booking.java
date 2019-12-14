@@ -8,11 +8,8 @@ package Telas.Cartao;
 import BackEnd.Database;
 import BackEnd.Upper;
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.net.URL;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
@@ -24,7 +21,7 @@ import javax.swing.text.MaskFormatter;
 import java.io.File;
 import net.sourceforge.tess4j.*;
 import net.sourceforge.tess4j.util.LoadLibs;
-
+import java.util.regex.Pattern;
 /**
  *
  * @author Administração
@@ -37,6 +34,7 @@ public class Cartoes_Booking extends javax.swing.JFrame {
     MaskFormatter mascaraData;
     Database conexao = new Database();
     Upper a = new Upper();
+    private static final Pattern p = Pattern.compile("([0-9])");
 
     public Cartoes_Booking() {
         initComponents();
@@ -167,8 +165,8 @@ public class Cartoes_Booking extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelArquivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonArquivo)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -297,37 +295,33 @@ public class Cartoes_Booking extends javax.swing.JFrame {
         } catch (TesseractException e) {
             System.out.println(e);
         }
-        System.out.println("Texto: "+imgText);
-        String[] lines = imgText.split("\\r?\\n");
+        //System.out.println("Texto: "+imgText);
         int aux,aux1;
-        for (String line : lines) {
-            if(line.contains("Reservation ID:") || line.contains("Numero da reserva:")){                
-                aux = line.length();
-                id.setText(line.substring((aux-10), aux));
-            }else if(line.contains("Card number:") || line.contains("NL’Jmero do cartao:")){                
-                aux = line.length();
-                numCard.setText(line.substring((aux-16),aux));
-            }else if(line.contains("Card holder's name") || line.contains("Nome do titular do cartao:") ){
-                aux = line.length();
-                aux1 = 5+ line.indexOf("name:");
-                titular.setText(line.substring(aux1,aux).toUpperCase());
-            }else if(line.contains("Expiration Date:") || line.contains("Data de validade:")){
-                aux = line.length();
-                validade.setText(line.substring(aux-9,aux));
-            }else if(line.contains("CVC Code:") || line.contains("Codigo de seguranga:")){
-                aux = line.length();
-                cod.setText(line.substring(aux-4,aux));
-            }
-            
-        }
-
-
-
+        String[] lines = imgText.split("\\r?\\n");        
+        
+        id.setText(lines[1].replaceAll("\\D+",""));       
+        numCard.setText(lines[6].replaceAll("\\D+",""));
+        aux = lines[7].indexOf(":");
+        aux1 = lines[7].length();
+        lines[7] = lines[7].substring(aux);
+        lines[7] = lines[7].replaceAll(": ","");
+        titular.setText(lines[7]);
+        validade.setText(insertString(lines[8].replaceAll("\\D+",""), "/", 1));
+        cod.setText(lines[9].replaceAll("\\D+",""));
     }//GEN-LAST:event_buttonArquivoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
+    public static String insertString(String originalString,String stringToBeInserted,int index){
+        String newString = new String();   
+        for (int i = 0; i < originalString.length(); i++) {   
+            newString += originalString.charAt(i);   
+            if (i == index) { 
+                newString += stringToBeInserted; 
+            } 
+        }   
+        return newString; 
+    } 
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
